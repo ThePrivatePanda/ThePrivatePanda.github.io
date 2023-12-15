@@ -1,46 +1,151 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Orbitron:wght@800&family=Roboto&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>MIT EA Decision</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <style>
+            /* Import the Chivo font from Google Fonts */
+            @import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap');
 
-  <title>Countdown Timer</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      font-size: 40px;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-  </style>
-</head>
-<body>
-  <div id="countdown">
-    <div id="days-hours-minutes-seconds"></div>
-  </div>
+            body {
+                /* Set the font to Chivo */
+                font-family: 'Chivo', sans-serif;
+                /* Center content */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                /* Set background and text color */
+                background-color: black;
+                color: white;
+                /* Remove default margin */
+                margin: 0;
+                /* Make sure the body takes the full viewport height */
+                height: 100vh;
+            }
 
-  <script>
-    function updateCountdown() {
-      const targetTime = 1702746960;
-      const currentTime = Math.floor(Date.now() / 1000);
-      const timeLeft = targetTime - currentTime;
+            /* Center text and other elements inside their containers */
+            .text-center {
+                text-align: center;
+            }
 
-      const days = Math.floor(timeLeft / (60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (60 * 60 * 24)) / (60 * 60));
-      const minutes = Math.floor((timeLeft % (60 * 60)) / 60);
-      const seconds = timeLeft % 60;
+            /* Apply this class to any container you want to center its content */
+            .center-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-      document.getElementById("days-hours-minutes-seconds").textContent = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
-    }
+            .count {
+                font-weight: bolder;
+                margin: 5px;
+                background-color: lightcoral;
+                line-height: 200%;
+                padding: 5px;
+                font-family: 'Courier New', Courier, monospace;
+            }
 
-    setInterval(updateCountdown, 1000);
-  </script>
-</body>
+            p {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>MIT EA Decision</h1><br>
+        <p>There's <span class="count" id="seconds"></span> seconds left until decisions release. </p>
+        <p>That's <span class="count" id="minutes"></span> minutes. </p>
+        <p>In other terms, <span class="count" id="hours"></span> hours. </p>
+        <p>You'd need to drop an object at rest from a height of about <span class="count" id="height"></span> meters for it to hit the ground when the callback happens. </p>
+        <p>If Joey Chestnut kept his world record pace, he could eat <span class="count" id="hotdogs"></span> hot dogs in that time. </p>
+        <p>If you worked Massachusetts minimum wage for that time, you'd earn <span class="count" id="minwage"></span>
+        </p>
+        <p>If a cell population doubled every hour, it would go from one cell to <span class="count" id="cellcount"></span>
+        <p>In the time, the earth will rotate <span class="count" id="rotation"></span> about its axis. </p>
+        <p>If you read at 250 Words per minute, you could read the shrek movie script <span class="count" id="shrek"></span> times. </p>
+        <p>If you were to spend Jeff Bezos's net worth in that time, you would need to spend <span class="count" id="bezos"></span> every second </p>
+        <p>If you were to travel to the edge of the observable universe in that time, you'd need to travel <span class="count" id="universe"></span> times the speed of light </p>
+        <script>
+            function secondsAway() {
+                const currentDate = new Date();
+                const eventDate = new Date("December 16, 2023 12:16:00-05:00");
+                const timeDiff = eventDate.getTime() - currentDate.getTime();
+                if (timeDiff < 0) {
+                    return 0;
+                }
+                return (timeDiff / 1000);
+            }
+
+            function getCurDistance(lat1, lon1, lat2, lon2) {
+                const R = 6371e3; // metres
+                const φ1 = lat1 * Math.PI / 180; // φ, λ in radians
+                const φ2 = lat2 * Math.PI / 180;
+                const Δφ = (lat2 - lat1) * Math.PI / 180;
+                const Δλ = (lon2 - lon1) * Math.PI / 180;
+                const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                const d = R * c; // in metres
+                return d
+            }
+            let seconds = secondsAway();
+
+            function update() {
+                seconds = secondsAway();
+                setFormattedText("seconds", Math.floor(seconds))
+                setFormattedText("minutes", Math.floor(seconds / 60))
+                setFormattedText("hours", Math.floor(seconds / 60 / 60))
+                setFormattedText("hotdogs", Math.floor(seconds / 60 * (72 / 10)))
+                setFormattedText("shrek", Math.floor(seconds / 60 * 250 / 9574));
+                setText("bezos", "$" + getFormattedText(Math.floor(168000000000 / seconds)));
+                // x = x[0] + v[0]t + a[0]t^2/2
+                // x = 0, v[0] = 0, x[0] = 0, a[0] = 10, t=s
+                // (1/2)(10)(s^2) - m = 0
+                // m = (1/2)(10)(s^2)
+                setFormattedText("height", Math.floor(5 * seconds * seconds));
+                //cell count = 2^h
+                setFormattedText("cellcount", Math.floor(Math.pow(2, seconds / 60 / 60)));
+                //cell count = 2^h
+                setFormattedText("universe", Math.floor(46508000000000 * 365 * 24 * 60 * 60 / seconds));
+                // rotation = 360 / days
+                setText("rotation", getFormattedText(Math.floor(seconds / 60 / 60 / 24 * 360)) + "." + setNumberLength(Math.floor(seconds / 60 / 60 / 24 * 360 * 1000) % 1000, 3) + "°");
+                let money = Math.floor(15 * seconds / 60 / 60 * 100) / 100
+                setText("minwage", "$" + money);
+            }
+            let interval = setInterval(update, 10);
+
+            function setFormattedText(id, num) {
+                setText(id, getFormattedText(num))
+            }
+
+            function getFormattedText(num) {
+                return (getNumber(num) + "").replace(/(.)(?=(\d{3})+$)/g, '$1,');
+            }
+
+            function getNumber(num) {
+                if (num < 1) {
+                    return "";
+                }
+                try {
+                    return getNumber(Math.floor(num / 10)) + "" + num % 10
+                } catch {
+                    console.error(num);
+                }
+            }
+
+            function setText(id, text) {
+                document.getElementById(id).innerHTML = text
+            }
+
+            function setNumberLength(num, length) {
+                if (length > (num + "").length) {
+                    return setNumberLength("0" + num, length)
+                } else {
+                    return num;
+                }
+            }
+        </script>
+    </body>
 </html>
