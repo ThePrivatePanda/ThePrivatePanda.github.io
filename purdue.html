@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Orbitron:wght@800&family=Roboto&display=swap" rel="stylesheet">
+
+  <title>Purdue EA Update</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-size: 40px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown">
+    <div id="days-hours-minutes-seconds"></div>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      const targetDate = new Date("January 16, 2024 03:30:00");
+      const targetTime = targetDate.getTime() / 1000;
+      const currentTime = Math.floor(Date.now() / 1000);
+      const timeLeft = targetTime - currentTime;
+
+      const days = Math.floor(timeLeft / (60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (60 * 60 * 24)) / (60 * 60));
+      const minutes = Math.floor((timeLeft % (60 * 60)) / 60);
+      const seconds = timeLeft % 60;
+
+      document.getElementById("days-hours-minutes-seconds").textContent = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
