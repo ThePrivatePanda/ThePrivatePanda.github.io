@@ -257,6 +257,35 @@ a:focus-visible {
 /* page hero */
 
 .hero { padding: 3.2rem 0 2.2rem; }
+
+/* on-this-page item list (scrollspy) */
+
+.pagenav {
+  position: sticky;
+  top: 3.8rem;
+  z-index: 15;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(233, 231, 223, 0.08);
+  background: rgba(11, 13, 11, 0.92);
+  backdrop-filter: blur(6px);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+
+.pagenav a { color: var(--mut); }
+.pagenav a:hover { color: var(--ink); text-decoration: none; }
+.pagenav a[aria-current] { color: var(--moss); }
+
+.page [id] { scroll-margin-top: 7.5rem; }
+
+@media (max-width: 40rem) {
+  .pagenav { position: static; }
+  .page [id] { scroll-margin-top: 1rem; }
+}
 .page .hero + section { margin-top: 1rem; }
 
 .hero h1 {

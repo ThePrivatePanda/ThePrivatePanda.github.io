@@ -32,6 +32,14 @@
 			going in. Code stays unlinked where it is under NDA or not mine to publish.</p>
 		</div>
 
+		<nav class="pagenav" aria-label="On this page">
+			<a href="#spin-drift">spin drift</a>
+			<a href="#statelens">statelens</a>
+			<a href="#spine">spine</a>
+			<a href="#hyperloop">hyperloop</a>
+			<a href="#detsite">detsite</a>
+		</nav>
+
 		<section id="positions">
 			<h2>Positions <span class="n">03</span></h2>
 			<div class="grid">
@@ -126,5 +134,44 @@
 			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
 		</footer>
 	</div>
+	<script>
+	(function () {
+		var links = Array.prototype.slice.call(document.querySelectorAll('.pagenav a'));
+		var els = [];
+		var byEl = new Map();
+		links.forEach(function (a) {
+			var el = document.getElementById(a.getAttribute('href').slice(1));
+			if (el) { els.push(el); byEl.set(el, a); }
+		});
+		var active = new Set();
+		var hold = 0;
+		function mark(a) {
+			links.forEach(function (l) { l.removeAttribute('aria-current'); });
+			if (a) a.setAttribute('aria-current', 'true');
+		}
+		function apply() {
+			var line = window.innerHeight * 0.13; /* keep in sync with rootMargin top */
+			var best = null, bestTop = Infinity, fallback = null, fbTop = -Infinity;
+			els.forEach(function (el) {
+				if (!active.has(el)) return;
+				var t = el.getBoundingClientRect().top;
+				if (t >= line - 6) { if (t < bestTop) { best = el; bestTop = t; } }
+				else if (t > fbTop) { fallback = el; fbTop = t; }
+			});
+			var pick = best || fallback;
+			if (pick) mark(byEl.get(pick));
+		}
+		var io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (e) {
+				if (e.isIntersecting) active.add(e.target); else active.delete(e.target);
+			});
+			if (Date.now() > hold) apply();
+		}, { rootMargin: '-13% 0px -55% 0px' });
+		els.forEach(function (el) { io.observe(el); });
+		links.forEach(function (a) {
+			a.addEventListener('click', function () { hold = Date.now() + 1000; mark(a); });
+		});
+	})();
+	</script>
 </body>
 </html>
