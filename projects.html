@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Projects — Parth Mittal</title>
-	<meta name="description" content="Featured systems, research, and publications by Parth Mittal.">
+	<meta name="description" content="Featured systems by Parth Mittal, drawn as architectures.">
 	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -14,10 +14,11 @@
 			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
 			<a class="wordmark" href="index.html">privatepanda.co</a>
 			<nav>
-				<a href="#featured" aria-current="page">projects</a>
-				<a href="#research">research</a>
-				<a href="#publications">publications</a>
-				<a href="#index">index</a>
+				<a href="projects.html" aria-current="page">projects</a>
+				<a href="research.html">research</a>
+				<a href="publications.html">publications</a>
+				<a href="tools.html">tools</a>
+				<a href="catalogue.html">index</a>
 				<a href="about.html">about</a>
 				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
 			</nav>
@@ -27,15 +28,15 @@
 			<p class="eyebrow">systems &middot; architectures</p>
 			<h1>Projects</h1>
 			<p class="lede">The systems I&rsquo;m proudest of, drawn the way I think about them —
-			as architectures. Research, papers, and the full index follow. Where code is not
-			linked it is private, under NDA, or not yet released.</p>
+			as architectures. Where code is not linked it is private, under NDA, or not yet
+			released.</p>
 		</div>
 
 		<section id="featured">
 			<h2>Featured <span class="n">05</span></h2>
 			<div class="grid">
 
-				<article class="fcard wide">
+				<article class="fcard wide" id="meddler">
 					<svg class="schematic" viewBox="0 0 640 120" role="img" aria-label="Timeline forking at an intervention into an expected and a caused future">
 						<path class="ln" d="M20,74 L300,74"/>
 						<path class="ln" d="M60,70 L60,78 M100,70 L100,78 M140,70 L140,78 M180,70 L180,78 M220,70 L220,78 M260,70 L260,78"/>
@@ -59,7 +60,7 @@
 					<p class="tech">Python &middot; event-sourced engine &middot; WebSocket bridge &middot; HTML/JS &middot; Hypothesis property tests</p>
 				</article>
 
-				<article class="fcard">
+				<article class="fcard" id="spin-drift">
 					<svg class="schematic" viewBox="0 0 320 120" role="img" aria-label="Stereo cameras and IMU fused by VIO into a pose stream for PX4">
 						<rect class="bx" x="16" y="12" width="58" height="22"/>
 						<text x="45" y="26" text-anchor="middle">cam l</text>
@@ -84,7 +85,7 @@
 					<p class="tech">C++23 &middot; OpenCV &middot; PX4 / MAVLink v2 &middot; Gazebo SITL &middot; Jetson AGX Orin</p>
 				</article>
 
-				<article class="fcard">
+				<article class="fcard" id="spine">
 					<svg class="schematic" viewBox="0 0 320 120" role="img" aria-label="Two radio masts joined by a low-signature link">
 						<path class="ln" d="M16,102 L304,102"/>
 						<path class="ln" d="M70,102 L70,50 M62,58 L70,50 L78,58"/>
@@ -103,7 +104,7 @@
 					<p class="tech">custom RF protocol &middot; NRF24L01 &middot; Raspberry Pi &middot; Teensy &middot; RP2040 &middot; MicroPython</p>
 				</article>
 
-				<article class="fcard">
+				<article class="fcard" id="statelens">
 					<svg class="schematic" viewBox="0 0 320 120" role="img" aria-label="Control-flow graph with one enumerated path highlighted">
 						<rect class="bx" x="16" y="49" width="52" height="22"/>
 						<text x="42" y="63" text-anchor="middle">entry</text>
@@ -132,7 +133,7 @@
 					<p class="tech">LLVM / C++ &middot; Clang &middot; AFL++ &middot; Guix &middot; Answer Set Programming</p>
 				</article>
 
-				<article class="fcard">
+				<article class="fcard" id="pyloggor">
 					<svg class="schematic" viewBox="0 0 320 120" role="img" aria-label="Column-aligned log lines with one warning highlighted">
 						<rect class="bar" x="16" y="19" width="44" height="6"/>
 						<rect class="bx" x="74" y="15" width="40" height="14" rx="2"/>
@@ -162,101 +163,7 @@
 				</article>
 
 			</div>
-		</section>
-
-		<section id="research">
-			<h2>Research <span class="n">04</span></h2>
-			<div class="grid">
-
-				<article class="rcard">
-					<h3>When to Compute in Space</h3>
-					<span class="meta">with Dr. Gregory Falco &middot; Cornell &middot; 2025&ndash;26</span>
-					<p>Where should a computational task run — onboard flight computer, orbital data
-					center, ground station, or terrestrial cloud — when latency, cost, energy, radiation,
-					security, and reliability all conflict? Reframed a single-utility model as
-					multi-objective trade-space search on the tier simplex; built the two-stage framework,
-					both mission evaluators, and all six benchmarked optimizers behind the paper below.</p>
-					<p class="tech">Python &middot; NSGA-II &middot; SPEA2 &middot; MOEA/D &middot; MOPSO &middot; &epsilon;-constraint</p>
-					<p class="links"><a href="https://github.com/ThePrivatePanda/compute-location-moo">Code &nearr;</a></p>
-				</article>
-
-				<article class="rcard">
-					<h3>Roman Space Telescope — Target Database</h3>
-					<span class="meta">SIOSLab, Dr. Dmitry Savransky &middot; Cornell &middot; Spring 2026</span>
-					<p>For the coronagraph instrument&rsquo;s target database: built the importable Python
-					query client with server-side star-alias resolution, ported PHP-only server scripts to
-					Python, and populated all-sky ecliptic coordinates with asymmetric two-piece-normal
-					Monte Carlo uncertainties. Two merged PRs on a NASA flagship&rsquo;s planning
-					tooling.</p>
-					<p class="tech">Python &middot; SQL &middot; astropy &middot; Monte Carlo</p>
-				</article>
-
-				<article class="rcard">
-					<h3>Gemini Planet Imager 2.0</h3>
-					<span class="meta">SIOSLab, Dr. Dmitry Savransky &middot; Cornell &middot; Fall 2025</span>
-					<p>Instrument-control software for a real exoplanet imager: ported the calibration
-					(CAL) subsystem&rsquo;s control routines from legacy proprietary IDL to Python over a
-					shared RPC backend, with several merged PRs into the GPI 2.0 upgrade.</p>
-					<p class="tech">Python &middot; IDL &middot; RPC &middot; pytest</p>
-				</article>
-
-				<article class="rcard">
-					<h3>Automated Functional Movement Screen</h3>
-					<span class="meta">LISC, Dr. Silvia Ferrari &middot; Cornell &middot; Spring 2026</span>
-					<p>The analysis core of a VR posture-correction system driven by motion-diffusion and
-					VLM feedback: from raw motion-capture quaternions, derives joint angles, ranges of
-					motion, and clearances to grade the seven FMS physical-therapy exercises, scoring form
-					0&ndash;3 with a declarative rule interpreter whose guard operands reject
-					biomechanical compensations.</p>
-					<p class="tech">Python &middot; XSens MVNX &middot; NumPy &middot; quaternion kinematics</p>
-				</article>
-
-			</div>
-		</section>
-
-		<section id="publications">
-			<h2>Publications <span class="n">02</span></h2>
-
-			<article class="pub">
-				<span class="title">Multi-Objective Optimization of Computation Offloading in Space Systems</span>
-				<span class="meta">Journal of Aerospace Information Systems (AIAA) &middot; under review, 2026 &middot; co-author</span>
-				<p>The paper&rsquo;s computational core — the two-stage optimization framework, both
-				mission evaluators, and the six-algorithm benchmark — is my work.</p>
-			</article>
-
-			<article class="pub">
-				<span class="title">The Roman Coronagraph Community Participation Program: Target Database and Tools</span>
-				<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; submitted &middot; co-author</span>
-				<p>Contributed the database&rsquo;s Python query library, server-side star-alias
-				resolution, and the ecliptic-coordinate population with Monte Carlo uncertainties.</p>
-			</article>
-		</section>
-
-		<section id="index">
-			<h2>Index <span class="n">21</span></h2>
-			<ul class="tiles">
-				<li><span class="cname">HivePoker</span><span class="cdesc">Coalition poker AI attacking the unsolved multiplayer generalization of poker — one brain, several coordinated seats.</span></li>
-				<li><span class="cname">TimbreForge</span><span class="cdesc">Voice-processing pipeline that learns a voice from samples and reshapes other audio toward it.</span></li>
-				<li><span class="cname">KucoinPy</span><span class="cdesc">Low-latency KuCoin API client over raw TCP sockets, built for high-frequency trading bots.</span></li>
-				<li><span class="cname">KucoinOBM</span><span class="cdesc">Maintains an accurate live copy of a KuCoin market orderbook and announces changes over a local socket.</span></li>
-				<li><span class="cname">HidingInTheStatic</span><span class="cdesc">Encodes arbitrary data as grayscale video static that survives upload to video platforms.</span></li>
-				<li><span class="cname">Panda-Protection</span><span class="cdesc">Frictionless bot/DDoS shield built on recursive browser-only cipher challenges.</span></li>
-				<li><span class="cname">SignalSpy</span><span class="cdesc">Tracks crypto signal-callers over time and turns their claims into a measured accuracy record.</span></li>
-				<li><span class="cname">TypeKeeper</span><span class="cdesc">One decorator that checks Python function arguments against their type hints at runtime, zero dependencies.</span></li>
-				<li><span class="cname">TaskTree</span><span class="cdesc">Self-hosted task manager built around nested tasks and dual priorities.</span></li>
-				<li><span class="cname">LiveLeaf</span><span class="cdesc">Publishes a live Overleaf PDF to a shareable web link.</span></li>
-				<li><span class="cname">PianoTrainer</span><span class="cdesc">Browser-based piano-practice trainer that scores your playing over Web MIDI.</span></li>
-				<li><span class="cname">PresentationHelper</span><span class="cdesc">Control and annotate presentation slides from your phone, with no clicker.</span></li>
-				<li><span class="cname">Wallpaper Sync</span><span class="cdesc">A website that remotely sets the wallpaper on my Android phone.</span></li>
-				<li><span class="cname">licenser</span><span class="cdesc">License-key system for selling and controlling access to your own software.</span></li>
-				<li><span class="cname">HTBDownloader</span><span class="cdesc">Archives HackTheBox Academy content to PDF and serves a verifiable HTB transcript.</span></li>
-				<li><span class="cname">Nextcord</span><span class="cdesc">Contributor and community helper for a widely used Python Discord-bot library.</span></li>
-				<li><span class="cname">Discord Bot Fleet</span><span class="cdesc">A fleet of early Discord bots sharing a common base and a plug-and-play feature bank.</span></li>
-				<li><span class="cname">Cornell Hyperloop</span><span class="cdesc">Contributor to the browser-based monitoring/control GUI for the pod&rsquo;s electrical systems.</span></li>
-				<li><span class="cname">DetSite</span><span class="cdesc">Public website for an Air Force ROTC detachment, built against the official AF compliance checklist.</span></li>
-				<li><span class="cname">Competitive programming</span><span class="cdesc">Advent of Code (19th globally in 2024) and LeetCode practice.</span></li>
-				<li><span class="cname">FoodDonor</span><span class="cdesc">Hackathon app connecting surplus-food donors with shelters.</span></li>
-			</ul>
+			<p class="xref">lab work lives under <a href="research.html">research</a> &middot; everything else under <a href="tools.html">tools</a> and the <a href="catalogue.html">index</a></p>
 		</section>
 
 		<footer class="foot">

@@ -120,7 +120,7 @@ a:focus-visible {
 .manifest {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
   gap: 0.75rem;
   width: min(64rem, 100%);
   margin-top: 3rem;
@@ -395,6 +395,36 @@ a:focus-visible {
   margin-bottom: 0.3rem;
 }
 .tiles .cdesc { font-size: 0.85rem; color: var(--mut); line-height: 1.45; }
+
+/* full catalogue */
+
+.cat { list-style: none; }
+.cat li {
+  display: grid;
+  grid-template-columns: 12.5rem 6rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.9rem;
+}
+.cat .cname { font-family: var(--mono); font-size: 0.8rem; }
+.cat .ctag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+.cat .cdesc { color: var(--mut); }
+
+@media (max-width: 44rem) {
+  .cat li { grid-template-columns: 1fr 6rem; }
+  .cat .cdesc { grid-column: 1 / -1; }
+}
+
+/* cross-reference line under a section */
+.xref { font-family: var(--mono); font-size: 0.78rem; color: var(--mut); margin-top: 0.9rem; }
 
 /* about / contact / footer */
 
