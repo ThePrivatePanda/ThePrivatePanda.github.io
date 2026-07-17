@@ -260,6 +260,8 @@ a:focus-visible {
 
 /* left sidebar: on-this-page sections + items (scrollspy) */
 
+.page.withnav { max-width: 99.3rem; }
+
 .layout {
   display: grid;
   grid-template-columns: 12.5rem minmax(0, 1fr);
@@ -267,12 +269,17 @@ a:focus-visible {
   align-items: start;
 }
 
+.layout > .hero { grid-column: 2; grid-row: 1; }
+.layout > .main { grid-column: 2; grid-row: 2; }
+
 .pagenav {
   position: sticky;
   top: 5.2rem;
   max-height: calc(100vh - 6.5rem);
   overflow-y: auto;
-  margin-top: 3.55rem;
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 3.2rem;
   padding: 0.4rem 0 1rem;
   font-family: var(--mono);
   letter-spacing: 0.05em;
