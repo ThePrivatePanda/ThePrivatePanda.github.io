@@ -32,14 +32,21 @@
 			going in. Code stays unlinked where it is under NDA or not mine to publish.</p>
 		</div>
 
+		<div class="layout">
 		<nav class="pagenav" aria-label="On this page">
-			<a href="#spin-drift">spin drift</a>
-			<a href="#statelens">statelens</a>
-			<a href="#spine">spine</a>
-			<a href="#hyperloop">hyperloop</a>
-			<a href="#detsite">detsite</a>
+			<div class="pn-group">
+				<a class="pn-sec" href="#positions">Positions</a>
+				<a href="#spin-drift">spin drift</a>
+				<a href="#statelens">statelens</a>
+				<a href="#spine">spine</a>
+			</div>
+			<div class="pn-group">
+				<a class="pn-sec" href="#teams">Teams</a>
+				<a href="#hyperloop">hyperloop</a>
+				<a href="#detsite">detsite</a>
+			</div>
 		</nav>
-
+		<div class="main">
 		<section id="positions">
 			<h2>Positions <span class="n">03</span></h2>
 			<div class="grid">
@@ -129,6 +136,9 @@
 			<p class="xref">lab positions live under <a href="research.html">research &rarr;</a></p>
 		</section>
 
+		</div>
+		</div>
+
 		<footer class="foot">
 			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
 			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
@@ -136,7 +146,7 @@
 	</div>
 	<script>
 	(function () {
-		var links = Array.prototype.slice.call(document.querySelectorAll('.pagenav a'));
+		var links = Array.prototype.slice.call(document.querySelectorAll('.pagenav a:not(.pn-sec)'));
 		var els = [];
 		var byEl = new Map();
 		links.forEach(function (a) {
@@ -146,11 +156,17 @@
 		var active = new Set();
 		var hold = 0;
 		function mark(a) {
-			links.forEach(function (l) { l.removeAttribute('aria-current'); });
-			if (a) a.setAttribute('aria-current', 'true');
+			document.querySelectorAll('.pagenav a[aria-current]').forEach(function (l) {
+				l.removeAttribute('aria-current');
+			});
+			if (!a) return;
+			a.setAttribute('aria-current', 'true');
+			var group = a.closest('.pn-group');
+			var sec = group && group.querySelector('.pn-sec');
+			if (sec) sec.setAttribute('aria-current', 'true');
 		}
 		function apply() {
-			var line = window.innerHeight * 0.13; /* keep in sync with rootMargin top */
+			var line = window.innerHeight * 0.09; /* keep in sync with rootMargin top */
 			var best = null, bestTop = Infinity, fallback = null, fbTop = -Infinity;
 			els.forEach(function (el) {
 				if (!active.has(el)) return;
@@ -166,7 +182,7 @@
 				if (e.isIntersecting) active.add(e.target); else active.delete(e.target);
 			});
 			if (Date.now() > hold) apply();
-		}, { rootMargin: '-13% 0px -55% 0px' });
+		}, { rootMargin: '-9% 0px -55% 0px' });
 		els.forEach(function (el) { io.observe(el); });
 		links.forEach(function (a) {
 			a.addEventListener('click', function () { hold = Date.now() + 1000; mark(a); });
