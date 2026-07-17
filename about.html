@@ -4,36 +4,47 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>About — Parth Mittal</title>
-	<meta name="description" content="About Parth Mittal — computer science at Cornell University.">
+	<meta name="description" content="About Parth Mittal — computer science at Cornell University; aerospace software and systems architecture.">
 	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="sub">
 	<div class="page">
-		<nav class="topnav">
-			<a class="home" href="index.html">&larr; privatepanda.co</a>
-			<a href="projects.html">projects</a>
-			<a href="projects.html#research">research</a>
-			<a href="projects.html#publications">publications</a>
-			<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute;</a>
-		</nav>
+		<header class="masthead">
+			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="index.html">privatepanda.co</a>
+			<nav>
+				<a href="projects.html">projects</a>
+				<a href="projects.html#research">research</a>
+				<a href="projects.html#publications">publications</a>
+				<a href="projects.html#index">index</a>
+				<a href="about.html" aria-current="page">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
 
-		<h1>About</h1>
+		<div class="hero">
+			<p class="eyebrow">the private panda</p>
+			<h1>About</h1>
+		</div>
 
-		<section>
-			<p>I&rsquo;m Parth Mittal — computer science at Cornell University (class of 2028), from
-			Torrance, California.</p>
+		<section class="prose">
+			<p>I&rsquo;m Parth Mittal — computer science at Cornell University, class of 2028,
+			from Torrance, California.</p>
 
-			<p>I like systems work close to the metal and to the data: compiler passes and fuzzing
-			infrastructure, visual-inertial navigation for drones that fly without GPS, deciding where
-			a spacecraft should run its computation, and scoring human movement from raw motion-capture
-			quaternions. The common thread is building the load-bearing part — the pipeline, the
-			protocol, the solver — from scratch, and being able to say exactly why it works.</p>
+			<p>Aerospace is the pull; software architecture is the craft. The problems I chase are
+			the ones where a system has to be <em>designed</em>, not just written — a spacecraft
+			deciding what to compute onboard versus what to send down, a drone holding a pose
+			estimate together without GPS, a simulated world replaying a million ticks onto the same
+			bit-identical state. Getting the layering, the contracts, and the failure modes right is
+			the part I would do for free.</p>
 
-			<p>At Cornell I do research in two labs — space-instrument software with
+			<p>At Cornell I work in two research groups — space-instrument software in
 			Dr.&nbsp;Savransky&rsquo;s SIOSLab and motion analysis in Dr.&nbsp;Ferrari&rsquo;s LISC —
-			and I&rsquo;m a co-author on two papers currently under review. Before that I led networks
-			for a US Navy radio project through MIT Lincoln Laboratory&rsquo;s SOCOM Ignite program.</p>
+			and I&rsquo;m a co-author on two papers currently under review. Along the way,
+			internships have taken me through GPS-denied drone navigation and compiler-level fuzzing
+			infrastructure, and I led networks for a US Navy radio project through MIT Lincoln
+			Laboratory&rsquo;s SOCOM Ignite program.</p>
 
 			<p>Everything here ships under <em>The Private Panda</em> — the name my work has carried
 			since before any of it was worth reading. Away from a keyboard: mountain biking, cycling,
@@ -50,7 +61,10 @@
 			</ul>
 		</section>
 
-		<footer class="foot">&copy; Parth Mittal &middot; privatepanda.co</footer>
+		<footer class="foot">
+			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
+			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
+		</footer>
 	</div>
 </body>
 </html>
