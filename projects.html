@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Projects — Parth Mittal</title>
+	<meta name="description" content="Featured projects, research, and publications by Parth Mittal.">
+	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="page">
+		<nav class="topnav">
+			<a class="home" href="index.html">&larr; privatepanda.co</a>
+			<a href="#featured">featured</a>
+			<a href="#research">research</a>
+			<a href="#publications">publications</a>
+			<a href="#index">index</a>
+			<a href="about.html">about</a>
+		</nav>
+
+		<h1>Projects</h1>
+		<p class="lede">Selected work first, then research, papers, and the full catalogue.
+		Where code is not linked it is private, under NDA, or not yet released.</p>
+
+		<section id="featured">
+			<h2>Featured</h2>
+
+			<article class="card">
+				<h3>Meddler <span class="badge">in development</span></h3>
+				<span class="meta">solo &middot; design + build &middot; active</span>
+				<p>A deterministic simulator of a fictional world — countries with economies, currencies,
+				trade, leaders, wars, and disasters on a daily tick loop. History can be paused, scrubbed,
+				and rewound; any headline traces back through its chain of causes; and intervening forks
+				the timeline, showing the future that was going to happen beside the one just caused.
+				Forks replay the parent&rsquo;s exact RNG state, so every divergence is attributable to
+				the intervention alone.</p>
+				<p class="tech">Python &middot; event-sourced engine &middot; WebSocket bridge &middot; HTML/JS &middot; Hypothesis property tests</p>
+			</article>
+
+			<article class="card">
+				<h3>Spin Drift — GPS-denied drone navigation</h3>
+				<span class="meta">internship &middot; Nov 2025 &ndash; May 2026 &middot; code under NDA</span>
+				<p>A from-scratch visual-inertial odometry pipeline in C++23 that turns stereo cameras and
+				an IMU into a live pose estimate for an autonomous drone flying without GPS. Hand-written
+				pyramidal Lucas-Kanade stereo tracking, MAGSAC++ outlier rejection, and IMU pre-integration
+				on SO(3); the pose stream is framed as MAVLink v2 by hand (CRC, ENU-to-NED) to keep the
+				PX4 flight-controller link dependency-free.</p>
+				<p class="tech">C++23 &middot; OpenCV &middot; PX4 / MAVLink v2 &middot; Gazebo SITL &middot; Jetson AGX Orin</p>
+			</article>
+
+			<article class="card">
+				<h3>StateLens — path-exhaustive fuzzing infrastructure</h3>
+				<span class="meta">internship &middot; Summer 2025 &middot; code under NDA</span>
+				<p>Compiler and program-analysis infrastructure for a fuzzer that aims to exercise
+				substantially every execution path through firmware and embedded targets: an LLVM pass
+				that rewrites program IR into a canonical deterministic form, a C++ constraint-graph path
+				solver served over a socket, a customized AFL++ fork, and a Guix channel pinning the whole
+				toolchain for bit-identical team-wide builds.</p>
+				<p class="tech">LLVM / C++ &middot; Clang &middot; AFL++ &middot; Guix &middot; Answer Set Programming</p>
+			</article>
+
+			<article class="card">
+				<h3>SPINE — covert short-range radio</h3>
+				<span class="meta">MIT Lincoln Laboratory &middot; SOCOM Ignite &middot; Networks Lead &middot; Sep 2024 &ndash; Apr 2025</span>
+				<p>A secure short-range radio system for US Navy field operators, built to trade range for
+				a minimal RF signature. Designed the custom communication protocol — framing sized to
+				benchmarked NRF24 throughput — with one stack running across Raspberry Pi, Teensy, and
+				RP2040/Pico, plus HINT, a zero-interaction USB configuration loader for operators who
+				cannot type under field stress. Delivered a working demonstration across two hardware
+				generations.</p>
+				<p class="tech">custom RF protocol &middot; NRF24L01 &middot; Raspberry Pi &middot; Teensy &middot; RP2040 &middot; MicroPython</p>
+			</article>
+
+			<article class="card">
+				<h3>pyloggor</h3>
+				<span class="meta">solo author &middot; PyPI &middot; v2.0 &middot; maintained</span>
+				<p>A structured logging library for Python: coloured, column-aligned output that drops into
+				a project with almost no configuration. Writes ANSI codes directly and batches file writes
+				on a background thread, so heavy logging stays cheap. MIT licensed and typed.</p>
+				<p class="tech">Python &middot; ANSI &middot; threading &middot; py.typed</p>
+				<p class="links"><a href="https://pypi.org/project/pyloggor/">PyPI &nearr;</a></p>
+			</article>
+		</section>
+
+		<section id="research">
+			<h2>Research</h2>
+
+			<article class="card">
+				<h3>When to Compute in Space</h3>
+				<span class="meta">with Dr. Gregory Falco &middot; Cornell &middot; Fall 2025 &ndash; Spring 2026</span>
+				<p>Where should a computational task run — onboard flight computer, orbital data center,
+				ground station, or terrestrial cloud — when latency, cost, energy, radiation, security,
+				and reliability all conflict? Reframed a single-utility compute-placement model as
+				multi-objective trade-space search on the tier simplex, and built the two-stage framework,
+				both mission evaluators, and all six benchmarked optimizers behind the resulting paper
+				(under review, below).</p>
+				<p class="tech">Python &middot; NSGA-II &middot; SPEA2 &middot; MOEA/D &middot; MOPSO &middot; &epsilon;-constraint</p>
+				<p class="links"><a href="https://github.com/ThePrivatePanda/compute-location-moo">Code &nearr;</a></p>
+			</article>
+
+			<article class="card">
+				<h3>Roman Space Telescope — Coronagraph Target Database</h3>
+				<span class="meta">SIOSLab, Dr. Dmitry Savransky &middot; Cornell &middot; Spring 2026</span>
+				<p>Built the database&rsquo;s importable Python query client with server-side star-alias
+				resolution, ported PHP-only server scripts to Python, and populated all-sky ecliptic
+				coordinates with asymmetric two-piece-normal Monte Carlo uncertainties. Two merged PRs on
+				a database used to plan observations for a NASA flagship instrument.</p>
+				<p class="tech">Python &middot; SQL &middot; astropy &middot; Monte Carlo</p>
+			</article>
+
+			<article class="card">
+				<h3>Gemini Planet Imager 2.0</h3>
+				<span class="meta">SIOSLab, Dr. Dmitry Savransky &middot; Cornell &middot; Fall 2025</span>
+				<p>Contributed to the instrument-control software upgrade for a real exoplanet-imaging
+				instrument: porting the calibration (CAL) subsystem&rsquo;s control routines from legacy
+				proprietary IDL to Python over a shared RPC backend, with several merged PRs.</p>
+				<p class="tech">Python &middot; IDL &middot; RPC &middot; pytest</p>
+			</article>
+
+			<article class="card">
+				<h3>Automated Functional Movement Screen</h3>
+				<span class="meta">LISC, Dr. Silvia Ferrari &middot; Cornell &middot; Spring 2026</span>
+				<p>The analysis core of a VR posture-correction system driven by motion-diffusion and VLM
+				feedback. From raw motion-capture quaternions, derives joint angles, ranges of motion, and
+				clearances to grade the seven FMS physical-therapy exercises, and scores form 0&ndash;3
+				with a declarative rule interpreter whose guard operands reject biomechanical
+				compensations. Shipped as an installable package with a CLI.</p>
+				<p class="tech">Python &middot; XSens MVNX &middot; NumPy &middot; quaternion kinematics</p>
+			</article>
+		</section>
+
+		<section id="publications">
+			<h2>Publications</h2>
+
+			<article class="pub">
+				<span class="title">Multi-Objective Optimization of Computation Offloading in Space Systems</span>
+				<span class="meta">Journal of Aerospace Information Systems (AIAA) &middot; under review, 2026 &middot; co-author</span>
+				<p>The paper&rsquo;s computational core — the two-stage optimization framework, both mission
+				evaluators, and the six-algorithm benchmark — is my work.</p>
+			</article>
+
+			<article class="pub">
+				<span class="title">The Roman Coronagraph Community Participation Program: Target Database and Tools</span>
+				<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; submitted &middot; co-author</span>
+				<p>Contributed the database&rsquo;s Python query library, server-side star-alias resolution,
+				and the ecliptic-coordinate population with Monte Carlo uncertainties.</p>
+			</article>
+		</section>
+
+		<section id="index">
+			<h2>Index</h2>
+			<ul class="catalogue">
+				<li><span class="cname">HivePoker</span><span class="cdesc">Coalition poker AI attacking the unsolved multiplayer generalization of poker — one brain, several coordinated seats.</span></li>
+				<li><span class="cname">TimbreForge</span><span class="cdesc">Voice-processing pipeline that learns a voice from samples and reshapes other audio toward it.</span></li>
+				<li><span class="cname">KucoinPy</span><span class="cdesc">Low-latency KuCoin API client over raw TCP sockets, built for high-frequency trading bots.</span></li>
+				<li><span class="cname">KucoinOBM</span><span class="cdesc">Maintains an accurate live copy of a KuCoin market orderbook and announces changes over a local socket.</span></li>
+				<li><span class="cname">HidingInTheStatic</span><span class="cdesc">Encodes arbitrary data as grayscale video static that survives upload to video platforms.</span></li>
+				<li><span class="cname">Panda-Protection</span><span class="cdesc">Frictionless bot/DDoS shield built on recursive browser-only cipher challenges.</span></li>
+				<li><span class="cname">SignalSpy</span><span class="cdesc">Tracks crypto signal-callers over time and turns their claims into a measured accuracy record.</span></li>
+				<li><span class="cname">TypeKeeper</span><span class="cdesc">One decorator that checks Python function arguments against their type hints at runtime, zero dependencies.</span></li>
+				<li><span class="cname">TaskTree</span><span class="cdesc">Self-hosted task manager built around nested tasks and dual priorities.</span></li>
+				<li><span class="cname">LiveLeaf</span><span class="cdesc">Publishes a live Overleaf PDF to a shareable web link.</span></li>
+				<li><span class="cname">PianoTrainer</span><span class="cdesc">Browser-based piano-practice trainer that scores your playing over Web MIDI.</span></li>
+				<li><span class="cname">PresentationHelper</span><span class="cdesc">Control and annotate presentation slides from your phone, with no clicker.</span></li>
+				<li><span class="cname">Wallpaper Sync</span><span class="cdesc">A website that remotely sets the wallpaper on my Android phone.</span></li>
+				<li><span class="cname">licenser</span><span class="cdesc">License-key system for selling and controlling access to your own software.</span></li>
+				<li><span class="cname">HTBDownloader</span><span class="cdesc">Archives HackTheBox Academy content to PDF and serves a verifiable HTB transcript.</span></li>
+				<li><span class="cname">Nextcord</span><span class="cdesc">Contributor and community helper for a widely used Python Discord-bot library.</span></li>
+				<li><span class="cname">Discord Bot Fleet</span><span class="cdesc">A fleet of early Discord bots sharing a common base and a plug-and-play feature bank.</span></li>
+				<li><span class="cname">Cornell Hyperloop</span><span class="cdesc">Contributor to the browser-based monitoring/control GUI for the pod&rsquo;s electrical systems.</span></li>
+				<li><span class="cname">DetSite</span><span class="cdesc">Public website for an Air Force ROTC detachment, built against the official AF public-website compliance checklist.</span></li>
+				<li><span class="cname">Competitive programming</span><span class="cdesc">Advent of Code (19th globally in 2024) and LeetCode practice.</span></li>
+				<li><span class="cname">FoodDonor</span><span class="cdesc">Hackathon app connecting surplus-food donors with shelters.</span></li>
+			</ul>
+		</section>
+
+		<footer class="foot">&copy; Parth Mittal &middot; privatepanda.co</footer>
+	</div>
+</body>
+</html>
