@@ -67,20 +67,13 @@ a:focus-visible {
 /* ---------- inner pages ---------- */
 
 .page {
-  max-width: 99.3rem;
+  max-width: 84rem;
   margin: 0 auto;
   padding: 0 1.5rem 1.25rem;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
-
-/* every page shares one geometry: a 15.3rem left gutter under the masthead.
-   Rail pages fill it with the pagenav; other pages leave it empty, so the
-   main column starts at the same x everywhere. */
-.page:not(.withnav) > .hero,
-.page:not(.withnav) > section,
-.page:not(.withnav) > .prose { margin-left: 15.3rem; }
 
 /* masthead */
 
@@ -146,6 +139,8 @@ a:focus-visible {
   grid-template-columns: 12.5rem minmax(0, 1fr);
   gap: 0 2.8rem;
   align-items: start;
+  /* the rail lives in the page's empty left margin; content is never shifted */
+  margin-left: -15.3rem;
 }
 
 .layout > .hero { grid-column: 2; grid-row: 1; }
@@ -189,13 +184,9 @@ a:focus-visible {
 
 .page [id] { scroll-margin-top: 5.5rem; }
 
-@media (max-width: 52rem) {
-  .layout { display: block; }
+@media (max-width: 112.5rem) {
+  .layout { display: block; margin-left: 0; }
   .pagenav { display: none; }
-  .page [id] { scroll-margin-top: 1rem; }
-  .page:not(.withnav) > .hero,
-  .page:not(.withnav) > section,
-  .page:not(.withnav) > .prose { margin-left: 0; }
 }
 .page .hero + section { margin-top: 1rem; }
 
