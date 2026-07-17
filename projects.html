@@ -17,6 +17,7 @@
 				<a href="projects.html" aria-current="page">projects</a>
 				<a href="research.html">research</a>
 				<a href="publications.html">publications</a>
+				<a href="experience.html">experience</a>
 				<a href="tools.html">tools</a>
 				<a href="catalogue.html">index</a>
 				<a href="about.html">about</a>
@@ -28,12 +29,11 @@
 			<p class="eyebrow">systems &middot; architectures</p>
 			<h1>Projects</h1>
 			<p class="lede">The systems I&rsquo;m proudest of, drawn the way I think about them —
-			as architectures. Where code is not linked it is private, under NDA, or not yet
-			released.</p>
+			as architectures. Where code is not linked it is not yet released.</p>
 		</div>
 
 		<section id="featured">
-			<h2>Featured <span class="n">05</span></h2>
+			<h2>Featured <span class="n">02</span></h2>
 			<div class="grid">
 
 				<article class="fcard wide" id="meddler">
@@ -58,79 +58,6 @@
 					divergence is attributable to the intervention alone — the architecture (pure
 					event-sourced engine, thin protocol, dumb view) is the point.</p>
 					<p class="tech">Python &middot; event-sourced engine &middot; WebSocket bridge &middot; HTML/JS &middot; Hypothesis property tests</p>
-				</article>
-
-				<article class="fcard" id="spin-drift">
-					<svg class="schematic" viewBox="0 0 320 120" role="img" aria-label="Stereo cameras and IMU fused by VIO into a pose stream for PX4">
-						<rect class="bx" x="16" y="12" width="58" height="22"/>
-						<text x="45" y="26" text-anchor="middle">cam l</text>
-						<rect class="bx" x="16" y="49" width="58" height="22"/>
-						<text x="45" y="63" text-anchor="middle">cam r</text>
-						<rect class="bx" x="16" y="86" width="58" height="22"/>
-						<text x="45" y="100" text-anchor="middle">imu</text>
-						<path class="ln" d="M74,23 L148,55 M74,60 L148,60 M74,97 L148,65"/>
-						<rect class="bx" x="148" y="47" width="62" height="26"/>
-						<text x="179" y="63" text-anchor="middle">vio</text>
-						<path class="hl" d="M210,60 L262,60 M256,56 L262,60 L256,64"/>
-						<text class="hlt" x="236" y="50" text-anchor="middle">pose</text>
-						<rect class="bx" x="262" y="47" width="42" height="26"/>
-						<text x="283" y="63" text-anchor="middle">px4</text>
-					</svg>
-					<h3>Spin Drift — GPS-denied navigation</h3>
-					<span class="meta">internship &middot; Nov 2025 &ndash; May 2026 &middot; code under NDA</span>
-					<p>A from-scratch visual-inertial odometry pipeline in C++23: stereo cameras and an
-					IMU in, live pose out, streamed to a PX4 flight controller as hand-framed MAVLink v2
-					(CRC, ENU-to-NED) so the link carries no dependencies. Pyramidal Lucas-Kanade stereo
-					tracking, MAGSAC++ outlier rejection, IMU pre-integration on SO(3).</p>
-					<p class="tech">C++23 &middot; OpenCV &middot; PX4 / MAVLink v2 &middot; Gazebo SITL &middot; Jetson AGX Orin</p>
-				</article>
-
-				<article class="fcard" id="spine">
-					<svg class="schematic" viewBox="0 0 320 120" role="img" aria-label="Two radio masts joined by a low-signature link">
-						<path class="ln" d="M16,102 L304,102"/>
-						<path class="ln" d="M70,102 L70,50 M62,58 L70,50 L78,58"/>
-						<path class="ln" d="M250,102 L250,50 M242,58 L250,50 L258,58"/>
-						<path class="hl" d="M70,50 Q160,18 250,50"/>
-						<text class="hlt" x="160" y="14" text-anchor="middle">low-signature link</text>
-						<text x="160" y="115" text-anchor="middle">pi &middot; teensy &middot; pico &mdash; one stack</text>
-					</svg>
-					<h3>SPINE — covert short-range radio</h3>
-					<span class="meta">MIT Lincoln Laboratory &middot; SOCOM Ignite &middot; Networks Lead &middot; 2024&ndash;25</span>
-					<p>A secure short-range radio for US Navy field operators, trading range for a minimal
-					RF signature. Designed the custom protocol — framing sized to benchmarked NRF24
-					throughput — with one stack across Raspberry Pi, Teensy, and RP2040, plus HINT, a
-					zero-interaction USB configuration loader for operators who cannot type under field
-					stress. Demonstrated across two hardware generations.</p>
-					<p class="tech">custom RF protocol &middot; NRF24L01 &middot; Raspberry Pi &middot; Teensy &middot; RP2040 &middot; MicroPython</p>
-				</article>
-
-				<article class="fcard" id="statelens">
-					<svg class="schematic" viewBox="0 0 320 120" role="img" aria-label="Control-flow graph with one enumerated path highlighted">
-						<rect class="bx" x="16" y="49" width="52" height="22"/>
-						<text x="42" y="63" text-anchor="middle">entry</text>
-						<path class="hl" d="M68,60 L136,24"/>
-						<path class="ln" d="M68,60 L136,60 M68,60 L136,96"/>
-						<circle class="nd" cx="140" cy="24" r="3.5"/>
-						<circle class="ndm" cx="140" cy="60" r="3.5"/>
-						<circle class="ndm" cx="140" cy="96" r="3.5"/>
-						<path class="hl" d="M144,24 L206,42"/>
-						<path class="ln" d="M144,60 L206,42 M144,60 L206,78 M144,96 L206,78"/>
-						<circle class="nd" cx="210" cy="42" r="3.5"/>
-						<circle class="ndm" cx="210" cy="78" r="3.5"/>
-						<path class="hl" d="M214,42 L252,42"/>
-						<path class="ln" d="M214,78 L252,48"/>
-						<rect class="bx" x="252" y="31" width="52" height="22"/>
-						<text x="278" y="45" text-anchor="middle">exit</text>
-						<text x="160" y="115" text-anchor="middle">every path, enumerated</text>
-					</svg>
-					<h3>StateLens — path-exhaustive fuzzing</h3>
-					<span class="meta">internship &middot; Summer 2025 &middot; code under NDA</span>
-					<p>Compiler and analysis infrastructure for a fuzzer that aims to exercise
-					substantially every execution path through firmware: an LLVM pass rewriting program
-					IR into a canonical deterministic form, a C++ constraint-graph path solver served
-					over a socket, a customized AFL++ fork, and a Guix channel pinning the toolchain for
-					bit-identical team-wide builds.</p>
-					<p class="tech">LLVM / C++ &middot; Clang &middot; AFL++ &middot; Guix &middot; Answer Set Programming</p>
 				</article>
 
 				<article class="fcard" id="pyloggor">
@@ -163,7 +90,7 @@
 				</article>
 
 			</div>
-			<p class="xref">lab work lives under <a href="research.html">research</a> &middot; everything else under <a href="tools.html">tools</a> and the <a href="catalogue.html">index</a></p>
+			<p class="xref">internships and leadership live under <a href="experience.html">experience</a> &middot; lab work under <a href="research.html">research</a> &middot; everything else under <a href="tools.html">tools</a> and the <a href="catalogue.html">index</a></p>
 		</section>
 
 		<footer class="foot">
