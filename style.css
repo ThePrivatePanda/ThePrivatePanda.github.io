@@ -120,42 +120,49 @@ a:focus-visible {
 
 .manifest {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
   width: min(64rem, 100%);
   margin-top: 3rem;
 }
 
+.manifest li { flex: 1 1 13.5rem; }
+.manifest a { height: 100%; }
+
 .manifest a {
   display: block;
-  padding: 0.9rem 1rem 0.8rem;
-  border: 1px solid var(--line);
-  background: rgba(11, 13, 11, 0.82);
-  backdrop-filter: blur(6px);
-  color: var(--ink);
+  padding: 1.35rem 1.4rem 1.25rem;
+  border: 1px solid rgba(233, 231, 223, 0.8);
+  background: rgba(11, 13, 11, 0.3);
+  backdrop-filter: blur(3px);
+  color: #fff;
   text-decoration: none;
-  transition: border-color 120ms ease;
+  transition: background-color 140ms ease, border-color 140ms ease;
 }
 
-.manifest a:hover { border-color: var(--moss); text-decoration: none; }
+.manifest a:hover {
+  border-color: #fff;
+  background: rgba(233, 231, 223, 0.12);
+  text-decoration: none;
+}
 
 .manifest .name {
   font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-.manifest .name .arrow { float: right; color: var(--mut); }
+.manifest .name .arrow { float: right; color: rgba(233, 231, 223, 0.6); }
 .manifest a:hover .arrow { color: var(--moss); }
 
 .manifest .count {
   display: block;
-  margin-top: 0.55rem;
+  margin-top: 0.7rem;
   font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--mut);
+  font-size: 0.74rem;
+  color: rgba(233, 231, 223, 0.72);
   white-space: nowrap;
 }
 
