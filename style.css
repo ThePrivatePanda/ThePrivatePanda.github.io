@@ -272,6 +272,7 @@ a:focus-visible {
   top: 5.2rem;
   max-height: calc(100vh - 6.5rem);
   overflow-y: auto;
+  margin-top: 3.55rem;
   padding: 0.4rem 0 1rem;
   font-family: var(--mono);
   letter-spacing: 0.05em;
@@ -299,8 +300,6 @@ a:focus-visible {
 }
 .pagenav a:not(.pn-sec):hover { color: var(--ink); text-decoration: none; }
 .pagenav a:not(.pn-sec)[aria-current] { color: var(--moss); border-left-color: var(--moss); }
-
-.layout .main > section:first-child { margin-top: 0.5rem; }
 
 .page [id] { scroll-margin-top: 5.5rem; }
 
