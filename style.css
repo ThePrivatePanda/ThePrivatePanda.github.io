@@ -450,6 +450,20 @@ a:focus-visible {
   list-style: none;
 }
 
+.tiles li.arch { opacity: 0.55; }
+
+.archtag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mut);
+  border: 1px solid var(--line);
+  padding: 0.05rem 0.35rem;
+  margin-left: 0.4rem;
+  vertical-align: 1.5px;
+}
+
 .tiles li {
   border: 1px solid var(--hairline);
   background: var(--surface);
