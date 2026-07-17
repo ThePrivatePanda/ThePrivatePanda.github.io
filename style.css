@@ -204,11 +204,16 @@ a:focus-visible {
 /* masthead */
 
 .masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
   gap: 0.7rem;
   padding: 1.1rem 0;
   border-bottom: 1px solid var(--line);
+  background: rgba(11, 13, 11, 0.92);
+  backdrop-filter: blur(6px);
 }
 
 .masthead .logo img {
