@@ -67,10 +67,20 @@ a:focus-visible {
 /* ---------- inner pages ---------- */
 
 .page {
-  max-width: 84rem;
+  max-width: 99.3rem;
   margin: 0 auto;
-  padding: 0 1.5rem 5rem;
+  padding: 0 1.5rem 1.25rem;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
 }
+
+/* every page shares one geometry: a 15.3rem left gutter under the masthead.
+   Rail pages fill it with the pagenav; other pages leave it empty, so the
+   main column starts at the same x everywhere. */
+.page:not(.withnav) > .hero,
+.page:not(.withnav) > section,
+.page:not(.withnav) > .prose { margin-left: 15.3rem; }
 
 /* masthead */
 
@@ -131,8 +141,6 @@ a:focus-visible {
 
 /* left sidebar: on-this-page sections + items (scrollspy) */
 
-.page.withnav { max-width: 99.3rem; }
-
 .layout {
   display: grid;
   grid-template-columns: 12.5rem minmax(0, 1fr);
@@ -185,6 +193,9 @@ a:focus-visible {
   .layout { display: block; }
   .pagenav { display: none; }
   .page [id] { scroll-margin-top: 1rem; }
+  .page:not(.withnav) > .hero,
+  .page:not(.withnav) > section,
+  .page:not(.withnav) > .prose { margin-left: 0; }
 }
 .page .hero + section { margin-top: 1rem; }
 
@@ -435,8 +446,10 @@ a:focus-visible {
 .contact li { list-style: none; padding: 0.3rem 0; }
 .contact .k { display: inline-block; width: 6.5rem; color: var(--mut); }
 
+.page section:last-of-type { margin-bottom: 5rem; }
+
 .foot {
-  margin-top: 5rem;
+  margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid var(--line);
   font-family: var(--mono);
