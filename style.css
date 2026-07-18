@@ -86,8 +86,8 @@ a:focus-visible {
   gap: 0.7rem;
   padding: 1.1rem 0;
   border-bottom: 1px solid var(--line);
-  background: rgba(11, 13, 11, 0.92);
-  backdrop-filter: blur(6px);
+  background: transparent;
+  backdrop-filter: blur(10px);
 }
 
 .masthead .logo img {
@@ -151,6 +151,7 @@ a:focus-visible {
   top: 5.2rem;
   max-height: calc(100vh - 6.5rem);
   overflow-y: auto;
+  background: transparent;
   grid-column: 1;
   grid-row: 2;
   margin-top: 3.2rem;
