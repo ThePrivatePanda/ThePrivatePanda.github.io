@@ -28,28 +28,53 @@
 		<div class="hero">
 			<p class="eyebrow">papers</p>
 			<h1>Publications</h1>
-			<p class="lede">Both papers are in review; links and preprints will be added as they
-			become available. The <a href="research.html">research</a> behind each is described in
-			full.</p>
+			<p class="lede">The full write-up of each paper lives here — what the paper does and
+			exactly which parts are mine. Both are in review; preprint and DOI links will be added
+			as they become available.</p>
 		</div>
 
 		<section>
 			<h2>Under review <span class="n">02</span></h2>
 
-			<article class="pub" id="offloading">
-				<span class="title">Multi-Objective Optimization of Computation Offloading in Space Systems</span>
-				<span class="meta">Journal of Aerospace Information Systems (AIAA) &middot; under review, 2026 &middot; co-author</span>
-				<p>The paper&rsquo;s computational core — the two-stage optimization framework, both
-				mission evaluators, and the six-algorithm benchmark — is my work
-				(<a href="research.html#compute-in-space">When to Compute in Space</a>).</p>
+			<article class="pub full" id="offloading">
+				<h3>Multi-Objective Optimization of Computation Offloading in Space Systems <span class="badge now">under review</span></h3>
+				<span class="meta">Journal of Aerospace Information Systems (AIAA) &middot; submitted Jul 2026 &middot; co-author, 3rd of 4</span>
+				<p>Where should a computational task run — onboard flight computer, orbital data
+				center, ground station, or terrestrial cloud — when latency, cost, energy, radiation,
+				security, and reliability all conflict? The paper reframes an earlier single-utility
+				model as multi-objective trade-space search: a workload is a split across compute
+				tiers — a point on the tier simplex — and the answer is the Pareto front of feasible
+				splits, not one utility number.</p>
+				<p>The computational core is my work. The two-stage framework: discrete
+				flight-computer selection under hard TRL and radiation gates, then continuous routing
+				of the workload over the simplex. Both mission evaluators — including the nonlinear
+				one, built from seven separately-ablatable subsystem couplings drawn from spaceflight
+				engineering (M/M/1 queueing on latency, contact-window saturation, link-setup energy,
+				security-protocol overhead, thermal-margin degradation, congestion-driven link
+				availability, silent-data-corruption compounding), all carried into the paper intact.
+				And the six-optimizer benchmark, compared on hypervolume, spacing, and feasible rate,
+				with constraint-domination handling hard mission limits without penalty tuning.</p>
+				<p class="tech">Python &middot; NSGA-II &middot; SPEA2 &middot; MOEA/D &middot; MOPSO &middot; &epsilon;-constraint &middot; projected gradient</p>
+				<p class="links"><a class="go" href="research.html#compute-in-space">research context &rarr;</a> <a class="go" href="https://github.com/ThePrivatePanda/compute-location-moo">code &nearr;</a></p>
 			</article>
 
-			<article class="pub" id="roman-spie">
-				<span class="title">The Roman Coronagraph Community Participation Program: Target Database and Tools</span>
-				<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; submitted &middot; co-author</span>
-				<p>Contributed the database&rsquo;s Python query library, server-side star-alias
-				resolution, and the ecliptic-coordinate population with Monte Carlo uncertainties
-				(<a href="research.html#roman-db">Roman Target Database</a>).</p>
+			<article class="pub full" id="roman-spie">
+				<h3>The Roman Coronagraph Community Participation Program: Target Database and Tools <span class="badge now">submitted</span></h3>
+				<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; submitted 2026 &middot; co-author</span>
+				<p>The Roman Space Telescope&rsquo;s Community Participation Program maintains a
+				target database for the coronagraph instrument — the stars it may observe, with the
+				measurements its planning tools need. The paper describes that database and the tools
+				around it.</p>
+				<p>My contribution is in the tooling: the importable Python query client — a thin
+				client over the hosted HTTP API, since a database snapshot runs on the order of
+				2&nbsp;GB — with server-side star-alias resolution, so any registered catalog name
+				(&ldquo;HD&nbsp;95128&rdquo; or &ldquo;47&nbsp;UMa&rdquo;) returns the same record;
+				Python ports of previously PHP-only server scripts, putting the researcher toolchain
+				in one language; and the all-sky ecliptic-coordinate population, with uncertainties
+				from Monte Carlo draws over a two-piece asymmetric normal that honors the
+				catalog&rsquo;s separate upper and lower error columns. Merged through two PRs.</p>
+				<p class="tech">Python &middot; SQL &middot; astropy &middot; Monte Carlo</p>
+				<p class="links"><a class="go" href="research.html#roman-db">research context &rarr;</a></p>
 			</article>
 		</section>
 

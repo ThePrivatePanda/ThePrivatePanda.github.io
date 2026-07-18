@@ -1,6 +1,7 @@
 /* privatepanda.co — hand-edited, no build step.
    Palette from the panda photo: green-black night, warm fur-white, moss.
    Moss (--moss) means "interactive / live signal" and nothing else.
+   Amber (--amber) means "status / pay attention" and is never a link.
    Sub-pages sit on a faint engineering grid; featured work is drawn as
    blueprint schematics (inline SVG, classes .schematic below). */
 
@@ -10,6 +11,7 @@
   --ink: #e9e7df;
   --mut: #99a196;
   --moss: #a3b18a;
+  --amber: #d0a568;
   --line: rgba(233, 231, 223, 0.16);
   --hairline: rgba(233, 231, 223, 0.08);
   --mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", monospace;
@@ -40,6 +42,32 @@ body.sub {
 
 a { color: var(--moss); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* links inside running text are underlined at rest, so they read as links */
+.page p a,
+.cdesc a {
+  text-decoration: underline;
+  text-decoration-color: rgba(163, 177, 138, 0.45);
+  text-underline-offset: 3px;
+}
+.page p a:hover,
+.cdesc a:hover { text-decoration-color: var(--moss); }
+
+/* primary action on a card — unmistakably clickable */
+.go {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(163, 177, 138, 0.55);
+  padding: 0.3rem 0.75rem;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+.go:hover {
+  background: rgba(163, 177, 138, 0.14);
+  border-color: var(--moss);
+  text-decoration: none;
+}
 a:focus-visible {
   outline: 2px solid var(--moss);
   outline-offset: 3px;
@@ -287,6 +315,7 @@ a:focus-visible {
   white-space: nowrap;
 }
 .badge.live { border-color: var(--moss); color: var(--moss); }
+.badge.now { border-color: rgba(208, 165, 104, 0.55); color: var(--amber); }
 
 /* research cards */
 
@@ -314,6 +343,19 @@ a:focus-visible {
 .pub .title { font-weight: 500; }
 .pub .meta { display: block; margin-top: 0.25rem; }
 .pub p { margin: 0.5rem 0 0; color: var(--mut); font-size: 0.92rem; }
+
+/* full paper write-up (publications page — the canonical description) */
+.pub.full { padding: 1.3rem 1.5rem 1.2rem; margin-bottom: 1rem; }
+.pub.full h3 { font-size: 1.1rem; font-weight: 500; line-height: 1.4; }
+.pub.full p { color: var(--ink); font-size: 0.95rem; margin: 0.8rem 0 0; }
+.pub.full .tech {
+  margin-top: 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--mut);
+}
+.pub.full .links { margin-top: 0.9rem; font-family: var(--mono); font-size: 0.78rem; }
+.pub.full .links a { margin-right: 1rem; }
 
 /* home directory boxes */
 
