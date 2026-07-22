@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Spin Drift — Parth Mittal</title>
+	<meta name="description" content="Spin Drift — a from-scratch visual-inertial odometry pipeline for GPS-denied drone navigation.">
+	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="sub">
+	<div class="page">
+		<header class="masthead">
+			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="index.html">privatepanda.co</a>
+			<nav>
+				<a href="projects.html">projects</a>
+				<a href="publications.html">publications</a>
+				<a href="research.html">research</a>
+				<a href="experience.html" aria-current="page">experience</a>
+				<a href="tools.html">tools</a>
+				<a href="catalogue.html">index</a>
+				<a href="about.html">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
+
+		<div class="hero">
+			<p class="eyebrow">experience &middot; internship</p>
+			<h1>Spin Drift — GPS-denied navigation</h1>
+			<span class="meta">Research Intern &middot; Spin Drift Technologies &middot; Nov 2025 &ndash; May 2026 &middot; code under NDA</span>
+			<p class="lede">A from-scratch visual-inertial odometry pipeline in modern C++: stereo cameras and an IMU in, live pose out to a PX4 flight controller.</p>
+		</div>
+
+		<section>
+			<h2>Overview</h2>
+			<svg class="schematic solo" viewBox="0 0 320 120" role="img" aria-label="Stereo cameras and IMU fused by VIO into a pose stream for PX4">
+				<rect class="bx" x="16" y="12" width="58" height="22"/>
+				<text x="45" y="26" text-anchor="middle">cam l</text>
+				<rect class="bx" x="16" y="49" width="58" height="22"/>
+				<text x="45" y="63" text-anchor="middle">cam r</text>
+				<rect class="bx" x="16" y="86" width="58" height="22"/>
+				<text x="45" y="100" text-anchor="middle">imu</text>
+				<path class="ln" d="M74,23 L148,55 M74,60 L148,60 M74,97 L148,65"/>
+				<rect class="bx" x="148" y="47" width="62" height="26"/>
+				<text x="179" y="63" text-anchor="middle">vio</text>
+				<path class="hl" d="M210,60 L262,60 M256,56 L262,60 L256,64"/>
+				<text class="hlt" x="236" y="50" text-anchor="middle">pose</text>
+				<rect class="bx" x="262" y="47" width="42" height="26"/>
+				<text x="283" y="63" text-anchor="middle">px4</text>
+			</svg>
+			<p>A during-school-year internship in which I owned the navigation software for a drone that has to localize itself without GPS. I first ran a broad sensor-tradeoff study — per-sensor writeups across stereo, mono, event, depth and thermal cameras, IMU, LiDAR, radar, UWB, ultrasonic, barometer, magnetometer, and rangefinders — so hardware selection was evidence-based before code was written. Then I built the VIO pipeline end to end, running against mock, recorded, and simulated sensors, with a visual-SLAM layer designed to slot in on top.</p>
+			<p>Bound by NDA — the code is not mine to publish, so this stays at the architecture level.</p>
+		</section>
+
+		<section>
+			<h2>Design decisions <span class="n">05</span></h2>
+			<ul class="dlist">
+				<li>From-scratch was a decision, not a default: off-the-shelf systems (cuVSLAM, OpenVINS, OKVIS, ROVIO, ORB-SLAM3) were evaluated and rejected on licensing, NVIDIA/ROS2 lock-in, or research-grade instability — the project needed a permissively-owned stack tailored to its exact sensor set.</li>
+				<li>The visual estimator uses nonlinear optimization over a factor graph rather than an EKF, because camera reprojection is strongly nonlinear in rotation and an EKF&rsquo;s single linearization per update accumulates rotation error fast; the downstream PX4 EKF2 still fuses the vision pose for flight control.</li>
+				<li>Every sensor sits behind a pure-virtual C++ interface from day one, so the whole estimation stack develops and tests against synthetic mocks, recorded sequences, or Gazebo — adding real hardware means writing one driver class and changing nothing else.</li>
+				<li>The work was sequenced VIO-first, SLAM-second, tolerating drift in phase one: loop closure and a persistent map on top of an unproven estimator yields a broken SLAM system, so interfaces were designed for phase-two factors to slot in unchanged.</li>
+				<li>MAVLink frames are built by hand — CRC, ENU&rarr;NED conversion, no external MAVLink library — keeping the pose-output path dependency-free; Shi-Tomasi corners were picked over FAST because FAST misfires on saddle points where no contiguous bright/dark arc exists.</li>
+			</ul>
+			<p class="tech">C++23 &middot; OpenCV &middot; PX4 / MAVLink v2 &middot; Gazebo SITL &middot; Jetson AGX Orin</p>
+			<p class="xref">listed under <a href="experience.html#spin-drift">experience &rarr;</a></p>
+		</section>
+
+		<footer class="foot">
+			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
+			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
+		</footer>
+	</div>
+</body>
+</html>

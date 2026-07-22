@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Roman Target Database — Parth Mittal</title>
+	<meta name="description" content="Roman Space Telescope Coronagraph target database — query tooling and Monte Carlo ecliptic coordinates.">
+	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="sub">
+	<div class="page">
+		<header class="masthead">
+			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="index.html">privatepanda.co</a>
+			<nav>
+				<a href="projects.html">projects</a>
+				<a href="publications.html">publications</a>
+				<a href="research.html" aria-current="page">research</a>
+				<a href="experience.html">experience</a>
+				<a href="tools.html">tools</a>
+				<a href="catalogue.html">index</a>
+				<a href="about.html">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
+
+		<div class="hero">
+			<p class="eyebrow">research &middot; sioslab</p>
+			<h1>Roman Space Telescope — Target Database <span class="badge now">paper submitted</span></h1>
+			<span class="meta">SIOSLab, Dr. Dmitry Savransky &middot; Cornell &middot; Spring 2026 &middot; two merged PRs</span>
+			<p class="lede">Query tooling and new science for the Roman Coronagraph&rsquo;s target database — the stars a NASA flagship instrument may observe.</p>
+		</div>
+
+		<section>
+			<h2>Overview</h2>
+			<p>The Roman Space Telescope&rsquo;s Community Participation Program maintains a target database for the coronagraph instrument: the stars it may observe, with the measurements its planning tools need. I built the importable Python query client over the hosted HTTP API, added Python equivalents for previously PHP-only server scripts, and added new science — populating all-sky ecliptic coordinates with Monte Carlo uncertainties. Merged through two PRs.</p>
+		</section>
+
+		<section>
+			<h2>Design decisions <span class="n">05</span></h2>
+			<ul class="dlist">
+				<li>The client ships as a thin HTTP client against the hosted database rather than bundling data, because a single snapshot is on the order of 2&nbsp;GB; users import the package and query the live API instead of downloading a pickle.</li>
+				<li>Star lookup resolves any registered alias through the server-side alias table, so a caller can use any catalog name — &ldquo;HD&nbsp;95128&rdquo; or &ldquo;47&nbsp;UMa&rdquo; — and get the same record without knowing the canonical id.</li>
+				<li>Ecliptic-coordinate uncertainty comes from Monte Carlo draws over a two-piece asymmetric normal honoring the separate upper/lower error columns on every input axis (RA, dec, parallax, proper motion, radial velocity), because the catalog&rsquo;s own uncertainties are asymmetric — a symmetric error bar would misstate them.</li>
+				<li>The coordinate-population script is dry-run by default (<code>--write</code> to commit), so a script that mutates the production stars table cannot write by accident; rows with all-NULL input errors still get coordinates but leave uncertainty columns NULL rather than fabricating a value.</li>
+				<li>PHP-only server functionality was reimplemented in Python to unify the toolchain around one language for downstream researchers.</li>
+			</ul>
+			<p class="tech">Python &middot; SQL &middot; astropy &middot; Monte Carlo</p>
+			<p class="links"><a class="go" href="publications.html#roman-spie">paper write-up &rarr;</a></p>
+			<p class="xref">listed under <a href="research.html#roman-db">research &rarr;</a></p>
+		</section>
+
+		<footer class="foot">
+			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
+			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
+		</footer>
+	</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>pyloggor — Parth Mittal</title>
+	<meta name="description" content="pyloggor — structured, coloured, column-aligned logging for Python. Design notes.">
+	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="sub">
+	<div class="page">
+		<header class="masthead">
+			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="index.html">privatepanda.co</a>
+			<nav>
+				<a href="projects.html" aria-current="page">projects</a>
+				<a href="publications.html">publications</a>
+				<a href="research.html">research</a>
+				<a href="experience.html">experience</a>
+				<a href="tools.html">tools</a>
+				<a href="catalogue.html">index</a>
+				<a href="about.html">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
+
+		<div class="hero">
+			<p class="eyebrow">projects &middot; library</p>
+			<h1>pyloggor</h1>
+			<span class="meta">solo author &middot; PyPI &middot; v2.0 &middot; MIT &middot; typed</span>
+			<p class="lede">Structured, coloured, column-aligned logging for Python that drops into a project with almost no configuration.</p>
+		</div>
+
+		<section>
+			<h2>Overview</h2>
+			<svg class="schematic solo" viewBox="0 0 320 120" role="img" aria-label="Column-aligned log lines with one warning highlighted">
+				<rect class="bar" x="16" y="19" width="44" height="6"/>
+				<rect class="bx" x="74" y="15" width="40" height="14" rx="2"/>
+				<text x="94" y="25" text-anchor="middle">info</text>
+				<rect class="bar" x="130" y="19" width="160" height="6"/>
+				<rect class="bar" x="16" y="44" width="44" height="6"/>
+				<rect class="bx" x="74" y="40" width="40" height="14" rx="2"/>
+				<text x="94" y="50" text-anchor="middle">ok</text>
+				<rect class="bar" x="130" y="44" width="110" height="6"/>
+				<rect class="bar" x="16" y="69" width="44" height="6"/>
+				<rect x="74" y="65" width="40" height="14" rx="2" style="fill:rgba(163,177,138,.08);stroke:var(--moss);stroke-width:1.2"/>
+				<text class="hlt" x="94" y="75" text-anchor="middle">warn</text>
+				<rect class="barh" x="130" y="69" width="140" height="6"/>
+				<rect class="bar" x="16" y="94" width="44" height="6"/>
+				<rect class="bx" x="74" y="90" width="40" height="14" rx="2"/>
+				<text x="94" y="100" text-anchor="middle">info</text>
+				<rect class="bar" x="130" y="94" width="84" height="6"/>
+			</svg>
+			<p>A small logging library that produces clean, coloured, column-aligned log lines. It writes ANSI colour codes directly and batches file writes on a background thread, so heavy logging stays cheap. Published on PyPI, MIT licensed, fully typed.</p>
+			<p>The v2.0 release was a reliability and correctness overhaul, centred on one guarantee: logs survive shutdown.</p>
+		</section>
+
+		<section>
+			<h2>Design decisions <span class="n">05</span></h2>
+			<ul class="dlist">
+				<li>ANSI escape sequences are written directly instead of depending on the rich library — the v1.1.0 changelog records this cutting a log call from about 50&nbsp;ms to about 0.05&nbsp;ms, roughly a thousandfold, and it is the library&rsquo;s defining choice.</li>
+				<li>File writes are batched on a background thread that flushes a configurable number of times per second, so high-volume logging never blocks on disk IO; v1.2 made it thread-safe with locking at a documented, accepted throughput cost.</li>
+				<li>v2.0 guarantees logs survive shutdown: the writer flushes on interpreter exit via <code>atexit</code>, CRITICAL logs flush immediately, and <code>close()</code> flushes on demand — closing a real gap where buffered logs were lost on crash or exit.</li>
+				<li>Resolved caller file paths are cached, so the auto-filename feature — which walks the stack to label each line with file:line — does not re-walk the directory tree on every call.</li>
+				<li>Packaging migrated from the removed distutils to a PEP&nbsp;621 pyproject with a <code>py.typed</code> marker, so the library keeps installing on modern Python and its type hints reach consumers.</li>
+			</ul>
+			<p class="tech">Python &middot; ANSI &middot; threading &middot; py.typed</p>
+			<p class="links"><a class="go" href="https://pypi.org/project/pyloggor/">PyPI &nearr;</a></p>
+			<p class="xref">listed under <a href="projects.html#pyloggor">projects &rarr;</a></p>
+		</section>
+
+		<footer class="foot">
+			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
+			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
+		</footer>
+	</div>
+</body>
+</html>

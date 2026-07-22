@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Meddler — Parth Mittal</title>
+	<meta name="description" content="Meddler — a deterministic world simulator navigated by causality. Design and architecture.">
+	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="sub">
+	<div class="page">
+		<header class="masthead">
+			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="index.html">privatepanda.co</a>
+			<nav>
+				<a href="projects.html" aria-current="page">projects</a>
+				<a href="publications.html">publications</a>
+				<a href="research.html">research</a>
+				<a href="experience.html">experience</a>
+				<a href="tools.html">tools</a>
+				<a href="catalogue.html">index</a>
+				<a href="about.html">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
+
+		<div class="hero">
+			<p class="eyebrow">projects &middot; flagship</p>
+			<h1>Meddler <span class="badge now">in development</span></h1>
+			<span class="meta">solo &middot; design + build &middot; pure Python engine, web frontend</span>
+			<p class="lede">A deterministic world simulator navigated by causality: pause history, trace any headline back to its causes, intervene, and watch the fork.</p>
+		</div>
+
+		<section>
+			<h2>Overview</h2>
+			<svg class="schematic solo wide" viewBox="0 0 640 120" role="img" aria-label="Timeline forking at an intervention into an expected and a caused future">
+				<path class="ln" d="M20,74 L300,74"/>
+				<path class="ln" d="M60,70 L60,78 M100,70 L100,78 M140,70 L140,78 M180,70 L180,78 M220,70 L220,78 M260,70 L260,78"/>
+				<path class="lnd" d="M300,30 L300,66"/>
+				<text x="300" y="22" text-anchor="middle">intervention</text>
+				<circle class="nd" cx="300" cy="74" r="3.5"/>
+				<path class="lnd" d="M300,74 L620,74"/>
+				<text x="560" y="90" text-anchor="middle">expected</text>
+				<path class="hl" d="M300,74 L340,46 L620,46"/>
+				<text class="hlt" x="560" y="38" text-anchor="middle">caused</text>
+			</svg>
+			<p>A zero-player simulator of a fictional world — countries with economies, currencies, trade, infrastructure, leaders, grudges, wars, and disasters — on a deterministic daily tick loop, presented as a local web app that behaves like a time-travel debugger for history. Any headline traces back through its chain of causes; the world pauses, scrubs, and rewinds; and god-mode interventions (trigger a drought, assassinate a leader) fork the timeline, showing the future that was going to happen beside the one just caused.</p>
+			<p>The build is spec-first — a multi-revision design (r1 through r3.1) plus a binding forward-compatibility rule set — split into a pure Python engine and a plain HTML/JS frontend over a loopback WebSocket. The economy and drama/cascade systems are implemented and property-tested; the engine&#8646;frontend bridge and the full event catalog are in progress. The playable beta lands on this site first.</p>
+		</section>
+
+		<section>
+			<h2>Design decisions <span class="n">06</span></h2>
+			<ul class="dlist">
+				<li>Causality, not time, is the primary navigation dimension: the UI moves through the event graph — why did this happen, what did it cause — and time-scrubbing and counterfactual forking fall out of the same event-sourced architecture instead of being bolted on as separate features.</li>
+				<li>Every state mutation, money or not, is recorded on an owning event through a ledger of stat deltas, so the world at any tick is rebuilt by replaying deltas from the nearest snapshot — no re-running systems, no RNG involved, no possibility of divergence.</li>
+				<li>Fork seeds are derived with SHA-256 over the seed tuple rather than Python&rsquo;s builtin <code>hash()</code>, which is salted per process and would silently break the guarantee of a byte-identical event log across runs and machines.</li>
+				<li>A fork mirrors the parent timeline&rsquo;s exact RNG state at the fork tick instead of reseeding: an un-intervened fork tracks the parent bit-for-bit forever, so any divergence is provably attributable to the intervention and nothing else — the strongest determinism test in the project.</li>
+				<li>Events are a declarative registry — one spec per event kind, executed by a single generic consequence system — so hundreds of event kinds and every god-mode intervention are data, not core-loop code; adding a kind is one spec plus headline templates.</li>
+				<li>Cascade decay applies to a consequence&rsquo;s spawn probability, never its severity: a satellite crashed because a war drained a treasury is exactly as damaging as one crashed by direct intervention, so deep chains stay rare but consequential.</li>
+			</ul>
+			<p class="tech">Python &middot; event-sourced engine &middot; WebSocket bridge &middot; HTML/JS &middot; Hypothesis property tests</p>
+			<p class="xref">listed under <a href="projects.html#meddler">projects &rarr;</a> &middot; the beta will be playable at its own subdomain</p>
+		</section>
+
+		<footer class="foot">
+			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
+			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
+		</footer>
+	</div>
+</body>
+</html>

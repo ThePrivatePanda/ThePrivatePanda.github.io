@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SPINE — Parth Mittal</title>
+	<meta name="description" content="SPINE — a covert short-range radio for US Navy field operators, built through MIT Lincoln Laboratory's SOCOM Ignite.">
+	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="sub">
+	<div class="page">
+		<header class="masthead">
+			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="index.html">privatepanda.co</a>
+			<nav>
+				<a href="projects.html">projects</a>
+				<a href="publications.html">publications</a>
+				<a href="research.html">research</a>
+				<a href="experience.html" aria-current="page">experience</a>
+				<a href="tools.html">tools</a>
+				<a href="catalogue.html">index</a>
+				<a href="about.html">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
+
+		<div class="hero">
+			<p class="eyebrow">experience &middot; leadership</p>
+			<h1>SPINE — covert short-range radio</h1>
+			<span class="meta">Networks Lead &middot; MIT Lincoln Laboratory &middot; SOCOM Ignite &middot; Sep 2024 &ndash; Apr 2025</span>
+			<p class="lede">A secure short-range radio for US Navy field operators, trading transmission range for a minimal RF signature.</p>
+		</div>
+
+		<section>
+			<h2>Overview</h2>
+			<svg class="schematic solo" viewBox="0 0 320 120" role="img" aria-label="Two radio masts joined by a low-signature link">
+				<path class="ln" d="M16,102 L304,102"/>
+				<path class="ln" d="M70,102 L70,50 M62,58 L70,50 L78,58"/>
+				<path class="ln" d="M250,102 L250,50 M242,58 L250,50 L258,58"/>
+				<path class="hl" d="M70,50 Q160,18 250,50"/>
+				<text class="hlt" x="160" y="14" text-anchor="middle">low-signature link</text>
+				<text x="160" y="115" text-anchor="middle">pi &middot; teensy &middot; pico &mdash; one stack</text>
+			</svg>
+			<p>Field operators need devices that talk to each other over short range without an adversary detecting the transmission, and without the wire clutter of tethered gear. As Networks Lead I designed the custom communication protocol — tuned for low power, short range, and a small electromagnetic footprint — across a mix of Raspberry Pi, Teensy, RP2040, and NRF24 radio hardware. The work spans a first-generation stack, a reworked second generation, the radio-transmitter layer, and HINT, a field configuration loader. Demonstrated working covert comms across two hardware generations.</p>
+		</section>
+
+		<section>
+			<h2>Design decisions <span class="n">05</span></h2>
+			<ul class="dlist">
+				<li>One protocol runs across heterogeneous boards — Raspberry Pi, Teensy, Pico — rather than locking to a single platform, because operators in the field carry mixed hardware.</li>
+				<li>The short-range NRF24 band was targeted deliberately, trading transmission range for a smaller electromagnetic signature; the goal was non-detection, so stealth was chosen over reach.</li>
+				<li>The radio link was benchmarked empirically on a dedicated bandwidth bench, and the protocol&rsquo;s framing was sized to the measured throughput ceiling instead of datasheet figures, which overstate real NRF24 performance.</li>
+				<li>HINT loads new configuration the moment a USB drive is inserted, zero interaction — because an operator cannot be typing configs under field stress.</li>
+				<li>Signal isolation for demos was proven with a makeshift Faraday cage — a 3D-printed frame wrapped in aluminum foil — a cheap way to show the transmission stayed contained without lab RF equipment.</li>
+			</ul>
+			<p class="tech">custom RF protocol &middot; NRF24L01 &middot; Raspberry Pi &middot; Teensy &middot; RP2040 &middot; MicroPython</p>
+			<p class="xref">listed under <a href="experience.html#spine">experience &rarr;</a></p>
+		</section>
+
+		<footer class="foot">
+			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
+			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
+		</footer>
+	</div>
+</body>
+</html>

@@ -158,7 +158,8 @@ a:focus-visible {
 
 /* page hero */
 
-.hero { padding: 3.2rem 0 2.2rem; }
+.hero { padding: 2.2rem 0 1.6rem; }
+.hero .meta { display: block; margin-top: 0.55rem; }
 
 /* left sidebar: on-this-page sections + items (scrollspy) */
 
@@ -269,6 +270,8 @@ a:focus-visible {
 .fcard.wide { grid-column: 1 / -1; }
 
 .fcard h3 { font-size: 1.1rem; font-weight: 500; }
+.fcard h3 a, .rcard h3 a { color: var(--ink); }
+.fcard h3 a:hover, .rcard h3 a:hover { color: var(--moss); text-decoration: none; }
 .fcard .meta { display: block; margin: 0.3rem 0 0.8rem; }
 .fcard p { font-size: 0.95rem; margin-bottom: 0.7rem; }
 .fcard .tech {
@@ -357,20 +360,47 @@ a:focus-visible {
 .pub.full .links { margin-top: 0.9rem; font-family: var(--mono); font-size: 0.78rem; }
 .pub.full .links a { margin-right: 1rem; }
 
-/* home directory boxes */
+/* detail pages: one project per page */
 
-#now .schematic { max-height: 11rem; }
+.schematic.solo { max-width: 38rem; }
+.schematic.solo.wide { max-width: 64rem; }
+
+.dlist { list-style: none; max-width: 62rem; }
+.dlist li {
+  border-left: 2px solid rgba(163, 177, 138, 0.35);
+  padding: 0.05rem 0 0.05rem 1.1rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* home: Now + Papers + Explore share one band — the whole page fits one viewport */
+
+.homerow {
+  display: grid;
+  grid-template-columns: 5fr 4fr 3fr;
+  gap: 0 2.2rem;
+  align-items: start;
+  margin-bottom: 5rem;
+}
+.homerow section { margin-top: 2.2rem; margin-bottom: 0 !important; }
+@media (max-width: 64rem) { .homerow { display: block; } }
+
+/* home directory list */
+
+#now .schematic { max-height: 9rem; }
 
 .dir {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-  gap: 0.7rem;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
   list-style: none;
 }
 
 .dir a {
-  display: block;
-  padding: 0.95rem 1.1rem 0.85rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.62rem 0.9rem;
   border: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
@@ -385,21 +415,24 @@ a:focus-visible {
 
 .dir .name {
   font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.dir .name .arrow { float: right; color: var(--mut); }
+.dir .arrow { color: var(--mut); }
 .dir a:hover .arrow { color: var(--moss); }
 
 .dir .count {
-  display: block;
-  margin-top: 0.5rem;
+  margin-left: auto;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--mut);
   white-space: nowrap;
+}
+
+@media (max-width: 64rem) {
+  .dir { grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
 }
 
 /* catalogue tiles */

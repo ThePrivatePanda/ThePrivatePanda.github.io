@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Automated FMS — Parth Mittal</title>
+	<meta name="description" content="Automated Functional Movement Screen — scoring physical-therapy exercises from motion capture.">
+	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="sub">
+	<div class="page">
+		<header class="masthead">
+			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="index.html">privatepanda.co</a>
+			<nav>
+				<a href="projects.html">projects</a>
+				<a href="publications.html">publications</a>
+				<a href="research.html" aria-current="page">research</a>
+				<a href="experience.html">experience</a>
+				<a href="tools.html">tools</a>
+				<a href="catalogue.html">index</a>
+				<a href="about.html">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
+
+		<div class="hero">
+			<p class="eyebrow">research &middot; lisc</p>
+			<h1>Automated Functional Movement Screen</h1>
+			<span class="meta">LISC, Dr. Silvia Ferrari &middot; Cornell &middot; Spring 2026 &middot; installable package + CLI</span>
+			<p class="lede">Scores the seven FMS physical-therapy exercises 0&ndash;3 from motion-capture data — the analysis core of a VR posture-correction system.</p>
+		</div>
+
+		<section>
+			<h2>Overview</h2>
+			<p>A person wears an XSens inertial motion-capture suit and performs the seven Functional Movement Screen exercises; the system records each, scores form on the standard 0&ndash;3 FMS rubric, and feeds a motion-model/VLM layer that shows corrections in VR. I owned the recording and analysis pipeline: capturing MVNX pose data, computing biomechanical metrics — joint angles, ranges of motion, clearances — and scoring each exercise. Shipped as an installable pip package with a CLI, plus two visualization tools.</p>
+		</section>
+
+		<section>
+			<h2>Design decisions <span class="n">06</span></h2>
+			<ul class="dlist">
+				<li>Each exercise&rsquo;s FMS rubric is encoded as data, not code: thresholds live in one YAML file per exercise, evaluated highest-score-first with the first fully-passing rule winning, so the rubric is auditable and tunable by a researcher without touching Python.</li>
+				<li>The scoring core is a tiny generic rule interpreter — an operator map, with conditions comparing a named operand against a constant or another operand with an optional multiplier (such as 1.5&times; hand-length) — so new exercises reuse the same engine and only add operands plus a YAML file.</li>
+				<li>Dedicated guard operands reject compensation patterns the primary threshold cannot catch: shoulder mobility flags hands brought together in front of the body, the leg raise flags pelvic rock and floor-heel rise, rotary stability flags an IMU calibration offset — grounding scores in real biomechanical failure modes instead of a single naive threshold.</li>
+				<li>Logical landmark names map to a list of candidate MVNX point labels, first match wins, so the same rules run across recordings whose suit exports use different label sets.</li>
+				<li>The Windows-only capture path (XSens SDK, voice/keyboard dispatch, UDP control of MVN Studio) is split from a cross-platform analysis CLI, so scoring runs on any machine and only recording needs the hardware.</li>
+				<li>Two visualization paths, deliberately separate: a standalone viewer that hand-reconstructs a 3D skeleton from raw quaternions for quick inspection, and a pipeline-integrated viewer that bakes each recording plus its score and reasoning into a single self-contained HTML file — shareable with no server or dependencies.</li>
+			</ul>
+			<p class="tech">Python &middot; XSens MVNX &middot; NumPy &middot; quaternion kinematics</p>
+			<p class="xref">listed under <a href="research.html#fms">research &rarr;</a></p>
+		</section>
+
+		<footer class="foot">
+			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
+			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
+		</footer>
+	</div>
+</body>
+</html>
