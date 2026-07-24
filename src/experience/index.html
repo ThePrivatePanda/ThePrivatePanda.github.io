@@ -5,20 +5,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Experience — Parth Mittal</title>
 	<meta name="description" content="Internships, leadership, and team roles — Parth Mittal.">
-	<link rel="icon" href="images/pandalogo.svg" type="image/svg+xml">
-	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="/images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="/style.css">
 </head>
 <body class="sub">
 	<div class="page withnav">
 		<header class="masthead">
-			<a class="logo" href="index.html"><img src="images/pandalogo.svg" alt="The Private Panda"></a>
-			<a class="wordmark" href="index.html">privatepanda.co</a>
+			<a class="logo" href="/"><img src="/images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="/">privatepanda.co</a>
 			<nav>
-				<a href="projects.html">projects</a>
-				<a href="publications.html">publications</a>
-				<a href="research.html">research</a>
-				<a href="experience.html" aria-current="page">experience</a>
-				<a href="about.html">about</a>
+				<a href="/projects/">projects</a>
+				<a href="/publications/">publications</a>
+				<a href="/research/">research</a>
+				<a href="/experience/" aria-current="page">experience</a>
+				<a href="/about/">about</a>
 				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
 			</nav>
 		</header>
@@ -65,14 +65,14 @@
 						<rect class="bx" x="262" y="47" width="42" height="26"/>
 						<text x="283" y="63" text-anchor="middle">px4</text>
 					</svg>
-					<h3><a href="spin-drift.html">Spin Drift — GPS-denied navigation</a></h3>
+					<h3><a href="/experience/spin-drift/">Spin Drift — GPS-denied navigation</a></h3>
 					<span class="meta">Research Intern &middot; Spin Drift Technologies &middot; Nov 2025 &ndash; May 2026 &middot; code under NDA</span>
 					<p>A from-scratch visual-inertial odometry pipeline in C++23: stereo cameras and an
 					IMU in, live pose out, streamed to a PX4 flight controller as hand-framed MAVLink v2
 					(CRC, ENU-to-NED) so the link carries no dependencies. Pyramidal Lucas-Kanade stereo
 					tracking, MAGSAC++ outlier rejection, IMU pre-integration on SO(3).</p>
 					<p class="tech">C++23 &middot; OpenCV &middot; PX4 / MAVLink v2 &middot; Gazebo SITL &middot; Jetson AGX Orin</p>
-					<p class="links"><a class="go" href="spin-drift.html">full write-up &rarr;</a></p>
+					<p class="links"><a class="go" href="/experience/spin-drift/">full write-up &rarr;</a></p>
 				</article>
 
 				<article class="fcard" id="statelens">
@@ -94,7 +94,7 @@
 						<text x="278" y="45" text-anchor="middle">exit</text>
 						<text x="160" y="115" text-anchor="middle">every path, enumerated</text>
 					</svg>
-					<h3><a href="statelens.html">StateLens — path-exhaustive fuzzing</a></h3>
+					<h3><a href="/experience/statelens/">StateLens — path-exhaustive fuzzing</a></h3>
 					<span class="meta">Research Intern &middot; Phi Dynamics &middot; May &ndash; Aug 2025 &middot; code under NDA</span>
 					<p>Compiler and analysis infrastructure for a fuzzer that aims to exercise
 					substantially every execution path through firmware: an LLVM pass rewriting program
@@ -102,7 +102,7 @@
 					over a socket, a customized AFL++ fork, and a Guix channel pinning the toolchain for
 					bit-identical team-wide builds.</p>
 					<p class="tech">LLVM / C++ &middot; Clang &middot; AFL++ &middot; Guix &middot; Answer Set Programming</p>
-					<p class="links"><a class="go" href="statelens.html">full write-up &rarr;</a></p>
+					<p class="links"><a class="go" href="/experience/statelens/">full write-up &rarr;</a></p>
 				</article>
 
 				<article class="fcard" id="spine">
@@ -114,7 +114,7 @@
 						<text class="hlt" x="160" y="14" text-anchor="middle">low-signature link</text>
 						<text x="160" y="115" text-anchor="middle">pi &middot; teensy &middot; pico &mdash; one stack</text>
 					</svg>
-					<h3><a href="spine.html">SPINE — covert short-range radio</a></h3>
+					<h3><a href="/experience/spine/">SPINE — covert short-range radio</a></h3>
 					<span class="meta">Networks Lead &middot; MIT Lincoln Laboratory &middot; SOCOM Ignite &middot; Sep 2024 &ndash; Apr 2025</span>
 					<p>A secure short-range radio for US Navy field operators, trading range for a minimal
 					RF signature. Designed the custom protocol — framing sized to benchmarked NRF24
@@ -122,7 +122,7 @@
 					zero-interaction USB configuration loader for operators who cannot type under field
 					stress. Demonstrated across two hardware generations.</p>
 					<p class="tech">custom RF protocol &middot; NRF24L01 &middot; Raspberry Pi &middot; Teensy &middot; RP2040 &middot; MicroPython</p>
-					<p class="links"><a class="go" href="spine.html">full write-up &rarr;</a></p>
+					<p class="links"><a class="go" href="/experience/spine/">full write-up &rarr;</a></p>
 				</article>
 
 			</div>
@@ -131,10 +131,10 @@
 		<section id="teams">
 			<h2>Teams <span class="n">02</span></h2>
 			<ul class="tiles">
-				<li id="hyperloop"><span class="cname"><a href="hyperloop.html">Cornell Hyperloop</a></span><span class="cdesc">Two semesters on the electrical team&rsquo;s software: a browser-based dashboard (Python Dash + Plotly, Docker) monitoring and controlling the pod&rsquo;s electrical systems live, fed over a TCP serial-server bridge.</span></li>
-				<li id="detsite"><span class="cname"><a href="detsite.html">DetSite</a></span><span class="cdesc">Public website for AFROTC Detachment 520 at Cornell, built page-by-page to the official Air Force compliance checklist (AFI 35-101); complete, pending command approval.</span></li>
+				<li id="hyperloop"><span class="cname"><a href="/experience/hyperloop/">Cornell Hyperloop</a></span><span class="cdesc">Two semesters on the electrical team&rsquo;s software: a browser-based dashboard (Python Dash + Plotly, Docker) monitoring and controlling the pod&rsquo;s electrical systems live, fed over a TCP serial-server bridge.</span></li>
+				<li id="detsite"><span class="cname"><a href="/experience/detsite/">DetSite</a></span><span class="cdesc">Public website for AFROTC Detachment 520 at Cornell, built page-by-page to the official Air Force compliance checklist (AFI 35-101); complete, pending command approval.</span></li>
 			</ul>
-			<p class="xref">lab positions live under <a href="research.html">research &rarr;</a></p>
+			<p class="xref">lab positions live under <a href="/research/">research &rarr;</a></p>
 		</section>
 
 		</div>
