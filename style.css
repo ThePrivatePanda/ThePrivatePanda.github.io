@@ -22,6 +22,12 @@
 [hidden] { display: none !important; }
 
 html { background: var(--bg); scroll-behavior: smooth; }
+
+/* pages with and without a scrollbar must center identically: always reserve the gutter */
+html { overflow-y: scroll; }
+@supports (scrollbar-gutter: stable) {
+  html { overflow-y: auto; scrollbar-gutter: stable; }
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
