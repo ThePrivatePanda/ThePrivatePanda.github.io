@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ChipSat Flight Software — Parth Mittal</title>
+	<meta name="description" content="ChipSat Flight Software — flight software for a gram-scale chipsat in Cornell's Space Systems Design Studio, moving from Arduino to STM32 ahead of rocket-launch testing.">
+	<link rel="icon" href="/images/pandalogo.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="/style.css">
+</head>
+<body class="sub">
+	<div class="page">
+		<header class="masthead">
+			<a class="logo" href="/"><img src="/images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="/">privatepanda.co</a>
+			<nav>
+				<a href="/projects/">projects</a>
+				<a href="/research/" aria-current="page">research</a>
+				<a href="/experience/">experience</a>
+				<a href="/tools/">tools</a>
+				<a href="/about/">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
+
+		<div class="hero">
+			<p class="eyebrow">research &middot; space systems design studio</p>
+			<h1>ChipSat Flight Software <span class="badge now">in progress</span></h1>
+			<span class="meta">Flight Software Engineer &middot; Cornell SSDS &middot; Fall 2026</span>
+			<p class="lede">Flight software for a chipsat — a gram-scale, single-board spacecraft — as its board moves from Arduino to STM32 ahead of rocket-launch testing.</p>
+		</div>
+
+		<section>
+			<h2>Overview</h2>
+			<svg class="schematic solo" viewBox="0 0 320 120" role="img" aria-label="Plan: reproduce the Arduino build as a reference, port it to STM32, then fly it on a rocket launch">
+				<rect class="bx" x="16" y="44" width="78" height="30"/>
+				<text x="55" y="62" text-anchor="middle">arduino build</text>
+				<text x="55" y="90" text-anchor="middle">reference</text>
+				<path class="hl" d="M94,59 L126,59 M120,55 L126,59 L120,63"/>
+				<rect class="bx" x="126" y="44" width="78" height="30"/>
+				<text class="hlt" x="165" y="62" text-anchor="middle">stm32 port</text>
+				<text x="165" y="90" text-anchor="middle">swap-driven</text>
+				<path class="lnd" d="M204,59 L236,59"/>
+				<rect class="bx" x="236" y="44" width="68" height="30" style="stroke-dasharray:4 4"/>
+				<text x="270" y="62" text-anchor="middle">flight test</text>
+				<text x="270" y="90" text-anchor="middle">planned</text>
+			</svg>
+			<p>I started this semester as a flight software engineer on the chipsat in Cornell&rsquo;s Space Systems Design Studio. The board is migrating from Arduino to STM32. The first half of the semester reproduces the existing Arduino build so its behavior is pinned down and any latent bugs surface against a known-good reference; the second half ports the stack onto STM32. Two rocket launches are planned this semester so the software is exercised in real flight rather than only on the bench.</p>
+			<p>The work has just begun; this page describes the plan, not results.</p>
+		</section>
+
+		<section>
+			<h2>Design decisions <span class="n">03</span></h2>
+			<ul class="dlist">
+				<li>Reproduce the existing Arduino build before porting anything, rather than rewriting straight onto STM32 — without a known-good reference there is no way to tell a port bug from a bug the firmware always had.</li>
+				<li>Move to STM32 because the chipsat&rsquo;s size, weight, and power envelope rules the Arduino hardware out; the platform choice follows the SWaP budget, not developer convenience, and the MCU in turn bounds what the flight software can afford to do.</li>
+				<li>Plan flight testing on two rocket launches instead of bench testing alone, so the software meets the vibration, power, and timing conditions it actually has to survive.</li>
+			</ul>
+			<p class="tech">C/C++ &middot; STM32 (ARM Cortex-M) &middot; Arduino &middot; embedded firmware</p>
+			<p class="xref">listed under <a href="/research/#chipsat">research &amp; publications &rarr;</a></p>
+		</section>
+
+		<footer class="foot">
+			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
+			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
+		</footer>
+	</div>
+</body>
+</html>
