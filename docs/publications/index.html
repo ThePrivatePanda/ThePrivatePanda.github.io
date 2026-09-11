@@ -3,83 +3,30 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Publications — Parth Mittal</title>
-	<meta name="description" content="Papers co-authored by Parth Mittal.">
+	<title>Research &amp; Publications — Parth Mittal</title>
+	<meta name="description" content="Research and papers by Parth Mittal.">
 	<link rel="icon" href="/images/pandalogo.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="/style.css">
+	<script>
+	(function () {
+		var targets = {
+			'#offloading': '/research/#offloading',
+			'#roman-spie': '/research/#roman-spie'
+		};
+		window.location.replace(targets[window.location.hash] || '/research/#papers');
+	}());
+	</script>
+	<meta http-equiv="refresh" content="0; url=/research/#papers">
+	<link rel="canonical" href="https://privatepanda.co/research/#papers">
 </head>
 <body class="sub">
 	<div class="page">
-		<header class="masthead">
-			<a class="logo" href="/"><img src="/images/pandalogo.svg" alt="The Private Panda"></a>
-			<a class="wordmark" href="/">privatepanda.co</a>
-			<nav>
-				<a href="/projects/">projects</a>
-				<a href="/publications/" aria-current="page">publications</a>
-				<a href="/research/">research</a>
-				<a href="/experience/">experience</a>
-				<a href="/about/">about</a>
-				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
-			</nav>
-		</header>
-
 		<div class="hero">
-			<p class="eyebrow">papers</p>
-			<h1>Publications</h1>
-			<p class="lede">The full write-up of each paper lives here — what the paper does and
-			exactly which parts are mine. Both are in review; preprint and DOI links will be added
-			as they become available.</p>
+			<p class="eyebrow">page moved</p>
+			<h1>Research &amp; Publications</h1>
+			<p class="lede">Publications now live with their research context. Continue to
+			<a href="/research/#papers">Research &amp; Publications&nbsp;&rarr;</a></p>
 		</div>
-
-		<section>
-			<h2>Under review <span class="n">02</span></h2>
-
-			<article class="pub full" id="offloading">
-				<h3>Multi-Objective Optimization of Computation Offloading in Space Systems <span class="badge now">under review</span></h3>
-				<span class="meta">Journal of Aerospace Information Systems (AIAA) &middot; submitted Jul 2026 &middot; co-author, 3rd of 4</span>
-				<p>Where should a computational task run — onboard flight computer, orbital data
-				center, ground station, or terrestrial cloud — when latency, cost, energy, radiation,
-				security, and reliability all conflict? The paper reframes an earlier single-utility
-				model as multi-objective trade-space search: a workload is a split across compute
-				tiers — a point on the tier simplex — and the answer is the Pareto front of feasible
-				splits, not one utility number.</p>
-				<p>The computational core is my work. The two-stage framework: discrete
-				flight-computer selection under hard TRL and radiation gates, then continuous routing
-				of the workload over the simplex. Both mission evaluators — including the nonlinear
-				one, built from seven separately-ablatable subsystem couplings drawn from spaceflight
-				engineering (M/M/1 queueing on latency, contact-window saturation, link-setup energy,
-				security-protocol overhead, thermal-margin degradation, congestion-driven link
-				availability, silent-data-corruption compounding), all carried into the paper intact.
-				And the six-optimizer benchmark, compared on hypervolume, spacing, and feasible rate,
-				with constraint-domination handling hard mission limits without penalty tuning.</p>
-				<p class="tech">Python &middot; NSGA-II &middot; SPEA2 &middot; MOEA/D &middot; MOPSO &middot; &epsilon;-constraint &middot; projected gradient</p>
-				<p class="links"><a class="go" href="/research/#compute-in-space">research context &rarr;</a> <a class="go" href="https://github.com/ThePrivatePanda/compute-location-moo">code &nearr;</a></p>
-			</article>
-
-			<article class="pub full" id="roman-spie">
-				<h3>The Roman Coronagraph Community Participation Program: Target Database and Tools <span class="badge now">submitted</span></h3>
-				<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; submitted 2026 &middot; co-author</span>
-				<p>The Roman Space Telescope&rsquo;s Community Participation Program maintains a
-				target database for the coronagraph instrument — the stars it may observe, with the
-				measurements its planning tools need. The paper describes that database and the tools
-				around it.</p>
-				<p>My contribution is in the tooling: the importable Python query client — a thin
-				client over the hosted HTTP API, since a database snapshot runs on the order of
-				2&nbsp;GB — with server-side star-alias resolution, so any registered catalog name
-				(&ldquo;HD&nbsp;95128&rdquo; or &ldquo;47&nbsp;UMa&rdquo;) returns the same record;
-				Python ports of previously PHP-only server scripts, putting the researcher toolchain
-				in one language; and the all-sky ecliptic-coordinate population, with uncertainties
-				from Monte Carlo draws over a two-piece asymmetric normal that honors the
-				catalog&rsquo;s separate upper and lower error columns. Merged through two PRs.</p>
-				<p class="tech">Python &middot; SQL &middot; astropy &middot; Monte Carlo</p>
-				<p class="links"><a class="go" href="/research/#roman-db">research context &rarr;</a></p>
-			</article>
-		</section>
-
-		<footer class="foot">
-			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
-			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
-		</footer>
 	</div>
 </body>
 </html>

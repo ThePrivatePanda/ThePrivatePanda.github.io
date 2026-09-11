@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Research — Parth Mittal</title>
-	<meta name="description" content="Research by Parth Mittal — space-instrument software, aerospace systems, and motion analysis at Cornell.">
+	<title>Research &amp; Publications — Parth Mittal</title>
+	<meta name="description" content="Research and papers by Parth Mittal — aerospace systems, space-instrument software, and motion analysis at Cornell.">
 	<link rel="icon" href="/images/pandalogo.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="/style.css">
 </head>
@@ -15,70 +15,120 @@
 			<a class="wordmark" href="/">privatepanda.co</a>
 			<nav>
 				<a href="/projects/">projects</a>
-				<a href="/publications/">publications</a>
 				<a href="/research/" aria-current="page">research</a>
 				<a href="/experience/">experience</a>
+				<a href="/tools/">tools</a>
 				<a href="/about/">about</a>
 				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
 			</nav>
 		</header>
 
 		<div class="hero">
-			<p class="eyebrow">cornell &middot; three labs</p>
-			<h1>Research</h1>
-			<p class="lede">Space-instrument software, aerospace systems, and motion analysis —
-			and the <a href="/publications/">papers</a> this work feeds.</p>
+			<p class="eyebrow">cornell &middot; papers &middot; three labs</p>
+			<h1>Research &amp; Publications</h1>
+			<p class="lede">Two papers in review, the work behind them, and research in
+			space-instrument software and motion analysis.</p>
 		</div>
 
-		<section>
-			<h2>Projects <span class="n">04</span></h2>
+		<section id="papers">
+			<h2>Papers <span class="n">02</span></h2>
+
+			<article class="pub full disclosure-card" id="offloading">
+				<details class="expandable">
+					<summary>
+						<span id="compute-in-space" aria-hidden="true"></span>
+						<span class="item-title">Multi-Objective Optimization of Computation Offloading in Space Systems <span class="badge now">under review</span></span>
+						<span class="meta">Journal of Aerospace Information Systems (AIAA) &middot; submitted Jul 2026 &middot; second author</span>
+						<span class="preview">Where should a computational task run — onboard flight computer, orbital data
+						center, ground station, or terrestrial cloud — when latency, cost, energy, radiation,
+						security, and reliability all conflict? The paper reframes an earlier single-utility
+						model as multi-objective trade-space search: a workload is a split across compute
+						tiers — a point on the tier simplex — and the answer is the Pareto front of feasible
+						splits, not one utility number.</span>
+					</summary>
+					<div class="expand-body">
+						<p>The computational core is my work. The two-stage framework: discrete
+						flight-computer selection under hard TRL and radiation gates, then continuous routing
+						of the workload over the simplex. Both mission evaluators — including the nonlinear
+						one, built from seven separately-ablatable subsystem couplings drawn from spaceflight
+						engineering (M/M/1 queueing on latency, contact-window saturation, link-setup energy,
+						security-protocol overhead, thermal-margin degradation, congestion-driven link
+						availability, silent-data-corruption compounding), all carried into the paper intact.
+						And the six-optimizer benchmark, compared on hypervolume, spacing, and feasible rate,
+						with constraint-domination handling hard mission limits without penalty tuning.</p>
+					</div>
+				</details>
+				<div class="card-always">
+					<p class="tech">Python &middot; NSGA-II &middot; SPEA2 &middot; MOEA/D &middot; MOPSO &middot; &epsilon;-constraint &middot; projected gradient</p>
+					<p class="links"><a class="go" href="/research/compute-in-space/">project write-up &rarr;</a> <a class="go" href="https://github.com/ThePrivatePanda/compute-location-moo">code &nearr;</a></p>
+				</div>
+			</article>
+
+			<article class="pub full disclosure-card" id="roman-spie">
+				<details class="expandable">
+					<summary>
+						<span id="roman-db" aria-hidden="true"></span>
+						<span class="item-title">The Roman Coronagraph Community Participation Program: Target Database and Tools <span class="badge now">submitted</span></span>
+						<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; submitted 2026 &middot; co-author</span>
+						<span class="preview">The Roman Space Telescope&rsquo;s Community Participation Program maintains a
+						target database for the coronagraph instrument — the stars it may observe, with the
+						measurements its planning tools need. The paper describes that database and the tools
+						around it.</span>
+					</summary>
+					<div class="expand-body">
+						<p>My contribution is in the tooling: the importable Python query client — a thin
+						client over the hosted HTTP API, since a database snapshot runs on the order of
+						2&nbsp;GB — with server-side star-alias resolution, so any registered catalog name
+						(&ldquo;HD&nbsp;95128&rdquo; or &ldquo;47&nbsp;UMa&rdquo;) returns the same record;
+						Python ports of previously PHP-only server scripts, putting the researcher toolchain
+						in one language; and the all-sky ecliptic-coordinate population, with uncertainties
+						from Monte Carlo draws over a two-piece asymmetric normal that honors the
+						catalog&rsquo;s separate upper and lower error columns. Merged through two PRs.</p>
+					</div>
+				</details>
+				<div class="card-always">
+					<p class="tech">Python &middot; SQL &middot; astropy &middot; Monte Carlo</p>
+					<p class="links"><a class="go" href="/research/roman-db/">project write-up &rarr;</a></p>
+				</div>
+			</article>
+		</section>
+
+		<section id="research-projects">
+			<h2>Research projects <span class="n">02</span></h2>
 			<div class="grid">
 
-				<article class="rcard" id="compute-in-space">
-					<h3><a href="/research/compute-in-space/">When to Compute in Space</a></h3>
-					<span class="meta">with Dr. Gregory Falco &middot; Cornell &middot; 2025&ndash;26</span>
-					<p>Where should a computational task run — onboard flight computer, orbital data
-					center, ground station, or terrestrial cloud — when latency, cost, energy, radiation,
-					security, and reliability all conflict? Reframed a single-utility model as
-					multi-objective trade-space search on the tier simplex; built the two-stage framework,
-					both mission evaluators, and all six benchmarked optimizers behind the journal paper
-					now under review.</p>
-					<p class="tech">Python &middot; NSGA-II &middot; SPEA2 &middot; MOEA/D &middot; MOPSO &middot; &epsilon;-constraint</p>
-					<p class="links"><a class="go" href="/research/compute-in-space/">full write-up &rarr;</a> <a class="go" href="/publications/#offloading">paper &rarr;</a></p>
+				<article class="rcard disclosure-card" id="gpi">
+					<details class="expandable">
+						<summary>
+							<span class="item-title">Gemini Planet Imager 2.0</span>
+							<span class="meta">SIOSLab, Dr. Dmitry Savransky &middot; Cornell &middot; Fall 2025</span>
+							<span class="preview">Instrument-control software for a real exoplanet imager: ported the calibration
+							(CAL) subsystem&rsquo;s control routines from legacy proprietary IDL to Python over a
+							shared RPC backend, with several merged PRs into the GPI 2.0 upgrade.</span>
+						</summary>
+					</details>
+					<div class="card-always">
+						<p class="tech">Python &middot; IDL &middot; RPC &middot; pytest</p>
+						<p class="links"><a class="go" href="/research/gpi/">full write-up &rarr;</a></p>
+					</div>
 				</article>
 
-				<article class="rcard" id="roman-db">
-					<h3><a href="/research/roman-db/">Roman Space Telescope — Target Database</a></h3>
-					<span class="meta">SIOSLab, Dr. Dmitry Savransky &middot; Cornell &middot; Spring 2026</span>
-					<p>For the coronagraph instrument&rsquo;s target database: built the importable Python
-					query client with server-side star-alias resolution, ported PHP-only server scripts to
-					Python, and populated all-sky ecliptic coordinates with asymmetric two-piece-normal
-					Monte Carlo uncertainties. Two merged PRs on a NASA flagship&rsquo;s planning
-					tooling.</p>
-					<p class="tech">Python &middot; SQL &middot; astropy &middot; Monte Carlo</p>
-					<p class="links"><a class="go" href="/research/roman-db/">full write-up &rarr;</a> <a class="go" href="/publications/#roman-spie">paper &rarr;</a></p>
-				</article>
-
-				<article class="rcard" id="gpi">
-					<h3><a href="/research/gpi/">Gemini Planet Imager 2.0</a></h3>
-					<span class="meta">SIOSLab, Dr. Dmitry Savransky &middot; Cornell &middot; Fall 2025</span>
-					<p>Instrument-control software for a real exoplanet imager: ported the calibration
-					(CAL) subsystem&rsquo;s control routines from legacy proprietary IDL to Python over a
-					shared RPC backend, with several merged PRs into the GPI 2.0 upgrade.</p>
-					<p class="tech">Python &middot; IDL &middot; RPC &middot; pytest</p>
-					<p class="links"><a class="go" href="/research/gpi/">full write-up &rarr;</a></p>
-				</article>
-
-				<article class="rcard" id="fms">
-					<h3><a href="/research/fms/">Automated Functional Movement Screen</a></h3>
-					<span class="meta">LISC, Dr. Silvia Ferrari &middot; Cornell &middot; Spring 2026</span>
-					<p>The analysis core of a VR posture-correction system driven by motion-diffusion and
-					VLM feedback: from raw motion-capture quaternions, derives joint angles, ranges of
-					motion, and clearances to grade the seven FMS physical-therapy exercises, scoring form
-					0&ndash;3 with a declarative rule interpreter whose guard operands reject
-					biomechanical compensations.</p>
-					<p class="tech">Python &middot; XSens MVNX &middot; NumPy &middot; quaternion kinematics</p>
-					<p class="links"><a class="go" href="/research/fms/">full write-up &rarr;</a></p>
+				<article class="rcard disclosure-card" id="fms">
+					<details class="expandable">
+						<summary>
+							<span class="item-title">Automated Functional Movement Screen</span>
+							<span class="meta">LISC, Dr. Silvia Ferrari &middot; Cornell &middot; Spring 2026</span>
+							<span class="preview">The analysis core of a VR posture-correction system driven by motion-diffusion and
+							VLM feedback: from raw motion-capture quaternions, derives joint angles, ranges of
+							motion, and clearances to grade the seven FMS physical-therapy exercises, scoring form
+							0&ndash;3 with a declarative rule interpreter whose guard operands reject
+							biomechanical compensations.</span>
+						</summary>
+					</details>
+					<div class="card-always">
+						<p class="tech">Python &middot; XSens MVNX &middot; NumPy &middot; quaternion kinematics</p>
+						<p class="links"><a class="go" href="/research/fms/">full write-up &rarr;</a></p>
+					</div>
 				</article>
 
 			</div>

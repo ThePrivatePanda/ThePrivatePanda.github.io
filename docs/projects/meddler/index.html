@@ -1,70 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Meddler — Parth Mittal</title>
-	<meta name="description" content="Meddler — a deterministic world simulator navigated by causality. Design and architecture.">
-	<link rel="icon" href="/images/pandalogo.svg" type="image/svg+xml">
-	<link rel="stylesheet" href="/style.css">
+	<meta name="description" content="How Meddler evolved from an over-scoped world MMO idea into a deterministic causal simulator with rewindable, forkable history.">
+	<link rel="icon" href="/images/pandalogo.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
 </head>
-<body class="sub">
-	<div class="page">
-		<header class="masthead">
-			<a class="logo" href="/"><img src="/images/pandalogo.svg" alt="The Private Panda"></a>
-			<a class="wordmark" href="/">privatepanda.co</a>
-			<nav>
-				<a href="/projects/" aria-current="page">projects</a>
-				<a href="/publications/">publications</a>
-				<a href="/research/">research</a>
-				<a href="/experience/">experience</a>
-				<a href="/about/">about</a>
-				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
-			</nav>
-		</header>
+<body class="sub"><div class="page">
+<header class="masthead"><a class="logo" href="/"><img src="/images/pandalogo.svg" alt="The Private Panda"></a><a class="wordmark" href="/">privatepanda.co</a><nav><a href="/projects/" aria-current="page">projects</a><a href="/research/">research</a><a href="/experience/">experience</a><a href="/tools/">tools</a><a href="/about/">about</a><a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a></nav></header>
+<div class="hero"><p class="eyebrow">projects &middot; flagship</p><h1>Meddler <span class="badge now">in development</span></h1><span class="meta">solo &middot; pure Python engine &middot; WebSocket bridge &middot; browser client</span><p class="lede">A world simulator where the useful question is not only what happened, but why—and what changes if one cause is replaced.</p></div>
 
-		<div class="hero">
-			<p class="eyebrow">projects &middot; flagship</p>
-			<h1>Meddler <span class="badge now">in development</span></h1>
-			<span class="meta">solo &middot; design + build &middot; pure Python engine, web frontend</span>
-			<p class="lede">A deterministic world simulator navigated by causality: pause history, trace any headline back to its causes, intervene, and watch the fork.</p>
-		</div>
+<section class="story" id="trajectory"><h2>How it got here</h2>
+<p>The repository is older than the current project. It began in 2023 under the name Veritasim, attached to a much larger multiplayer-world idea. That version was mostly ambition: a hosted world, many users, and far too many systems before there was a clear reason to watch any of them. It sat dormant.</p>
+<p>The restart in July 2026 was a scope reset. Multiplayer, hosted deployment, a database, and generated prose were made explicit non-goals. The thing worth keeping was the world itself; the part that made it legible was causality. A country should not merely enter a recession. A shortage should reduce output, which should empty a treasury, which should cancel an infrastructure project, which might change a war. Each step needed to be inspectable.</p>
+<p>The first restart still imagined a terminal UI. That lasted about one proposal revision. A causal graph, parallel timelines, a globe, inspectors, and direct interventions needed more spatial freedom, so the interface moved to a browser and the engine stayed separate behind a small WebSocket contract. The proposal then kept expanding: fixed countries became generated countries, one economic number became six commodities, instant trade became shipments, and infrastructure started affecting what could actually move through the world.</p></section>
 
-		<section>
-			<h2>Overview</h2>
-			<svg class="schematic solo wide" viewBox="0 0 640 120" role="img" aria-label="Timeline forking at an intervention into an expected and a caused future">
-				<path class="ln" d="M20,74 L300,74"/>
-				<path class="ln" d="M60,70 L60,78 M100,70 L100,78 M140,70 L140,78 M180,70 L180,78 M220,70 L220,78 M260,70 L260,78"/>
-				<path class="lnd" d="M300,30 L300,66"/>
-				<text x="300" y="22" text-anchor="middle">intervention</text>
-				<circle class="nd" cx="300" cy="74" r="3.5"/>
-				<path class="lnd" d="M300,74 L620,74"/>
-				<text x="560" y="90" text-anchor="middle">expected</text>
-				<path class="hl" d="M300,74 L340,46 L620,46"/>
-				<text class="hlt" x="560" y="38" text-anchor="middle">caused</text>
-			</svg>
-			<p>A zero-player simulator of a fictional world — countries with economies, currencies, trade, infrastructure, leaders, grudges, wars, and disasters — on a deterministic daily tick loop, presented as a local web app that behaves like a time-travel debugger for history. Any headline traces back through its chain of causes; the world pauses, scrubs, and rewinds; and god-mode interventions (trigger a drought, assassinate a leader) fork the timeline, showing the future that was going to happen beside the one just caused.</p>
-			<p>The build is spec-first — a multi-revision design (r1 through r3.1) plus a binding forward-compatibility rule set — split into a pure Python engine and a plain HTML/JS frontend over a loopback WebSocket. The economy and drama/cascade systems are implemented and property-tested; the engine&#8646;frontend bridge and the full event catalog are in progress. The playable beta lands on this site first.</p>
-		</section>
+<section class="story" id="shape"><h2>What it became</h2>
+<svg class="schematic solo wide" viewBox="0 0 640 120" role="img" aria-label="Timeline forking at an intervention into an expected and caused future"><path class="ln" d="M20,74 L300,74"/><path class="ln" d="M60,70 L60,78 M100,70 L100,78 M140,70 L140,78 M180,70 L180,78 M220,70 L220,78 M260,70 L260,78"/><path class="lnd" d="M300,30 L300,66"/><text x="300" y="22" text-anchor="middle">intervention</text><circle class="nd" cx="300" cy="74" r="3.5"/><path class="lnd" d="M300,74 L620,74"/><text x="560" y="90" text-anchor="middle">expected</text><path class="hl" d="M300,74 L340,46 L620,46"/><text class="hlt" x="560" y="38" text-anchor="middle">caused</text></svg>
+<p>The engine advances in daily ticks. Countries produce and consume commodities, trade across distance, move shipments, maintain assets, elect or depose leaders, and fight. The browser turns the resulting event log into a newspaper feed, a globe, dossiers, and a causal trace. Rewind reconstructs state from snapshots and recorded deltas. Forking copies the parent at a chosen tick; an intervention then changes one branch while the untouched future remains available for comparison.</p>
+<p>The separation is deliberate but not elaborate: <code>meddler.engine</code> owns deterministic simulation, <code>meddler.bridge</code> translates state and commands across the frontend contract, and <code>web/</code> owns presentation. Import-linter enforces that direction so browser concerns cannot leak back into the simulation.</p></section>
 
-		<section>
-			<h2>Design decisions <span class="n">06</span></h2>
-			<ul class="dlist">
-				<li>Causality, not time, is the primary navigation dimension: the UI moves through the event graph — why did this happen, what did it cause — and time-scrubbing and counterfactual forking fall out of the same event-sourced architecture instead of being bolted on as separate features.</li>
-				<li>Every state mutation, money or not, is recorded on an owning event through a ledger of stat deltas, so the world at any tick is rebuilt by replaying deltas from the nearest snapshot — no re-running systems, no RNG involved, no possibility of divergence.</li>
-				<li>Fork seeds are derived with SHA-256 over the seed tuple rather than Python&rsquo;s builtin <code>hash()</code>, which is salted per process and would silently break the guarantee of a byte-identical event log across runs and machines.</li>
-				<li>A fork mirrors the parent timeline&rsquo;s exact RNG state at the fork tick instead of reseeding: an un-intervened fork tracks the parent bit-for-bit forever, so any divergence is provably attributable to the intervention and nothing else — the strongest determinism test in the project.</li>
-				<li>Events are a declarative registry — one spec per event kind, executed by a single generic consequence system — so hundreds of event kinds and every god-mode intervention are data, not core-loop code; adding a kind is one spec plus headline templates.</li>
-				<li>Cascade decay applies to a consequence&rsquo;s spawn probability, never its severity: a satellite crashed because a war drained a treasury is exactly as damaging as one crashed by direct intervention, so deep chains stay rare but consequential.</li>
-			</ul>
-			<p class="tech">Python &middot; event-sourced engine &middot; WebSocket bridge &middot; HTML/JS &middot; Hypothesis property tests</p>
-			<p class="xref">listed under <a href="/projects/#meddler">projects &rarr;</a> &middot; the beta will be playable at its own subdomain</p>
-		</section>
+<section class="story" id="turns"><h2>The parts that kept changing</h2>
+<div class="story-grid">
+<article><h3>Determinism became a feature, not test plumbing</h3><p>At first, reproducibility was necessary so debugging was possible. Fork comparison made it part of the product. A zero-intervention fork must follow its parent exactly, so a fork copies the parent RNG state instead of being reseeded. Stable substreams use SHA-256 rather than Python&rsquo;s process-salted <code>hash()</code>. A golden event log pins a 1,000-tick run.</p></article>
+<article><h3>The economy stopped being one function</h3><p>Production led to inventories; inventories led to bilateral trade; trade led to routes, in-flight shipments, arrivals, and losses; those led to ports, rail, power, communications, and other assets that could constrain the flow. Most of the recent work has been this kind of addition: a new feature forcing an older shortcut to become an explicit system.</p></article>
+<article><h3>Events had to own every mutation</h3><p>Silent state changes make a causal UI dishonest. Money moves through transfer, mint, and burn operations in integer minor units. Other changes are recorded as stat deltas owned by events. Event kinds moved from a closed switch to a declarative registry because interventions and cascades were growing faster than the loop should.</p></article>
+<article><h3>The frontend briefly had two engines</h3><p>The browser still contains a mock engine used while the real bridge was being built. It helped the UI move independently, but it also created a point where two implementations could disagree. The real Python engine is now authoritative; the remaining work is making the long-running real-engine path boring enough to trust.</p></article>
+</div></section>
 
-		<footer class="foot">
-			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
-			<span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span>
-		</footer>
-	</div>
-</body>
-</html>
+<section class="story" id="map"><h2>Current map</h2>
+<ul class="module-map"><li><code>engine/events.py</code>, <code>cascade.py</code>, <code>registry.py</code> — event log, causal edges, and declarative consequences.</li><li><code>engine/timeline.py</code>, <code>rng.py</code>, <code>diff.py</code> — reconstruction, deterministic substreams, and fork comparison.</li><li><code>engine/systems/</code> — production, trade, logistics, tariffs, war, and politics.</li><li><code>engine/worldgen.py</code>, <code>model.py</code>, <code>assets.py</code> — generated world state and infrastructure.</li><li><code>bridge/adapter.py</code>, <code>commands.py</code>, <code>server.py</code> — the engine/frontend boundary.</li><li><code>web/app.js</code>, <code>globe.js</code>, <code>realengine.js</code> — feed, inspectors, globe, interventions, and the real connection.</li></ul></section>
+
+<section class="story" id="testing"><h2>Where it is now</h2>
+<p>The tests are less about individual output values than invariants: identical seeds produce identical logs; an untouched fork has zero diff; ledgers conserve each currency unless an event explicitly mints or burns; bridge messages survive a real WebSocket round trip; and the layer boundary remains intact. Unit, property, golden, and bridge tests cover the engine from different directions.</p>
+<p>The project is now in late-stage long-run testing. That does not mean every planned simulation system exists. It means the implemented engine, bridge, and frontend are being exercised together for long enough to expose drift, runaway cascades, broken contracts, and performance problems that short tests miss. The missing launch pieces are mundane but important: finish those runs, remove stale mock assumptions, produce a real demo, and decide exactly what qualifies as beta.</p>
+<p class="tech">Python &middot; deterministic event log &middot; WebSockets &middot; HTML/JS &middot; pytest &middot; Hypothesis &middot; mypy &middot; import-linter</p><p class="xref">back to <a href="/projects/#meddler">selected projects &rarr;</a></p></section>
+<footer class="foot"><span>&copy; Parth Mittal &middot; privatepanda.co</span><span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:parth@privatepanda.co">Email</a></span></footer>
+</div></body></html>

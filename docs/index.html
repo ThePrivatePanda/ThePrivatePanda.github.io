@@ -8,34 +8,37 @@
 	<link rel="icon" href="/images/pandalogo.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="/style.css">
 </head>
-<body class="sub">
+<body class="sub home">
 	<div class="page">
 		<header class="masthead">
 			<a class="logo" href="/"><img src="/images/pandalogo.svg" alt="The Private Panda"></a>
 			<a class="wordmark" href="/">privatepanda.co</a>
 			<nav>
 				<a href="/projects/">projects</a>
-				<a href="/publications/">publications</a>
 				<a href="/research/">research</a>
 				<a href="/experience/">experience</a>
+				<a href="/tools/">tools</a>
 				<a href="/about/">about</a>
 				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
 			</nav>
 		</header>
 
-		<div class="hero">
-			<p class="eyebrow">the private panda</p>
-			<h1>Parth Mittal</h1>
+		<div class="hero homehero">
+			<div class="hero-title">
+				<p class="eyebrow">the private panda</p>
+				<h1>Parth Mittal</h1>
+			</div>
 			<p class="lede">Computer science at Cornell. I build a lot of software — simulators,
 			radios, navigation, libraries, games. The projects change; caring about how
 			they&rsquo;re architected doesn&rsquo;t. Aerospace is the direction.</p>
 		</div>
 
-		<div class="homerow">
-		<section id="now">
+		<main class="homeflow">
+		<section id="now" class="home-now">
 			<h2>Now <span class="n">01</span></h2>
 			<div class="grid">
-				<article class="fcard wide" id="meddler">
+				<article class="fcard wide home-feature" id="meddler">
+					<div class="home-feature-visual">
 					<svg class="schematic" viewBox="0 0 640 120" role="img" aria-label="Timeline forking at an intervention into an expected and a caused future">
 						<path class="ln" d="M20,74 L300,74"/>
 						<path class="ln" d="M60,70 L60,78 M100,70 L100,78 M140,70 L140,78 M180,70 L180,78 M220,70 L220,78 M260,70 L260,78"/>
@@ -47,27 +50,33 @@
 						<path class="hl" d="M300,74 L340,46 L620,46"/>
 						<text class="hlt" x="560" y="38" text-anchor="middle">caused</text>
 					</svg>
+					</div>
+					<div class="home-feature-copy">
 					<h3>Meddler <span class="badge now">in development</span></h3>
 					<span class="meta">deterministic world simulator &middot; navigated by causality</span>
 					<p>A simulated world — economies, leaders, wars, disasters — where history pauses,
 					rewinds, and forks: intervene and watch the future that was going to happen run
 					beside the one you just caused. The playable beta lands here first.</p>
 					<p class="links"><a class="go" href="/projects/meddler/">the architecture &rarr;</a></p>
+					</div>
 				</article>
 			</div>
 		</section>
 
+		<div class="home-lower">
 		<section id="papers">
 			<h2>Papers <span class="n">02</span></h2>
-			<article class="pub">
-				<span class="title"><a href="/publications/#offloading">Multi-Objective Optimization of Computation Offloading in Space Systems</a> <span class="badge now">under review</span></span>
+			<a class="pub itemlink" href="/research/#offloading">
+				<span class="title">Multi-Objective Optimization of Computation Offloading in Space Systems <span class="badge now">under review</span></span>
 				<span class="meta">Journal of Aerospace Information Systems (AIAA) &middot; 2026 &middot; co-author</span>
-			</article>
-			<article class="pub">
-				<span class="title"><a href="/publications/#roman-spie">The Roman Coronagraph Community Participation Program: Target Database and Tools</a> <span class="badge now">submitted</span></span>
+				<span class="nav-arrow" aria-hidden="true">&rarr;</span>
+			</a>
+			<a class="pub itemlink" href="/research/#roman-spie">
+				<span class="title">The Roman Coronagraph Community Participation Program: Target Database and Tools <span class="badge now">submitted</span></span>
 				<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; co-author</span>
-			</article>
-			<p class="xref">status and my contribution to each, under <a href="/publications/">publications&nbsp;&rarr;</a></p>
+				<span class="nav-arrow" aria-hidden="true">&rarr;</span>
+			</a>
+			<p class="xref">full write-ups and my contribution to each, under <a href="/research/#papers">research&nbsp;&rarr;</a></p>
 		</section>
 
 		<section id="explore">
@@ -78,19 +87,19 @@
 					<span class="count">03 featured systems</span>
 					<span class="arrow">&rarr;</span>
 				</a></li>
-				<li><a href="/publications/">
-					<span class="name">Publications</span>
-					<span class="count">02 under review</span>
-					<span class="arrow">&rarr;</span>
-				</a></li>
 				<li><a href="/research/">
 					<span class="name">Research</span>
-					<span class="count">04 projects &middot; 03 labs</span>
+					<span class="count">02 papers &middot; 04 projects</span>
 					<span class="arrow">&rarr;</span>
 				</a></li>
 				<li><a href="/experience/">
 					<span class="name">Experience</span>
 					<span class="count">03 positions &middot; 02 teams</span>
+					<span class="arrow">&rarr;</span>
+				</a></li>
+				<li><a href="/tools/">
+					<span class="name">Tools</span>
+					<span class="count">10 selected projects</span>
 					<span class="arrow">&rarr;</span>
 				</a></li>
 				<li><a href="/about/">
@@ -106,6 +115,7 @@
 			</ul>
 		</section>
 		</div>
+		</main>
 
 		<footer class="foot">
 			<span>&copy; Parth Mittal &middot; privatepanda.co</span>
