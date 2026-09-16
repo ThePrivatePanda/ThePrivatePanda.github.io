@@ -516,6 +516,12 @@ a:focus-visible {
 
 .homeflow { display: block; }
 .home-now { margin-top: 0 !important; }
+.home .home-now.home-later { margin-top: clamp(4rem, 7vw, 6rem) !important; }
+.home-start .fcard { padding: 1.5rem 1.6rem 1.4rem; }
+.home-start .fcard h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); }
+.home-start .fcard .meta { margin: 0.35rem 0 0.9rem; }
+.home-start .fcard p { max-width: 36rem; }
+.home-start .fcard .links { margin-top: auto; padding-top: 0.4rem; }
 .home-feature {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(22rem, 5fr);
@@ -584,11 +590,15 @@ a:focus-visible {
 }
 
 @media (max-width: 44rem) {
-  .homehero { padding: 3rem 0; }
   .homehero h1 { font-size: clamp(2.8rem, 14vw, 3.6rem); }
   .homehero .lede { font-size: 1rem; margin-top: 1.6rem; }
   .home-feature-visual { min-height: 11rem; padding: 1.5rem; }
   .home-feature-copy { padding: 1.5rem; }
+  .homehero { padding: 2rem 0 2.25rem; }
+  .home-start .fcard { padding: 1.15rem 1.25rem 1.1rem; }
+  .home-start .fcard .meta { margin-bottom: 0.6rem; }
+  .home-start .fcard p { font-size: 0.92rem; line-height: 1.55; margin-bottom: 0.5rem; }
+  .home .home-now.home-later { margin-top: 3.5rem !important; }
   .home-lower { margin: 3.5rem 0 5rem; }
   .home .home-lower > section + section { margin-top: 3.5rem !important; }
   #explore .dir { grid-template-columns: 1fr; }
