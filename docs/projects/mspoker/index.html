@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MSPoker — Parth Mittal</title>
+	<meta name="description" content="MSPoker, by Parth Mittal: a multi-seat coalition poker AI with a Rust engine, a seat-attention network trained as a CFR blueprint with PPO fine-tuning, and real-time CFR+ search.">
+	<link rel="canonical" href="https://privatepanda.co/projects/mspoker/">
+	<link rel="icon" href="/favicon.ico" sizes="48x48">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+	<meta name="theme-color" content="#0b0d0b">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Parth Mittal">
+	<meta property="og:title" content="MSPoker — Parth Mittal">
+	<meta property="og:description" content="MSPoker, by Parth Mittal: a multi-seat coalition poker AI with a Rust engine, a seat-attention network trained as a CFR blueprint with PPO fine-tuning, and real-time CFR+ search.">
+	<meta property="og:url" content="https://privatepanda.co/projects/mspoker/">
+	<meta property="og:image" content="https://privatepanda.co/images/og.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Parth Mittal — computer science at Cornell University. privatepanda.co">
+	<meta property="og:locale" content="en_US">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="MSPoker — Parth Mittal">
+	<meta name="twitter:description" content="MSPoker, by Parth Mittal: a multi-seat coalition poker AI with a Rust engine, a seat-attention network trained as a CFR blueprint with PPO fine-tuning, and real-time CFR+ search.">
+	<meta name="twitter:image" content="https://privatepanda.co/images/og.png">
+	<meta name="twitter:image:alt" content="Parth Mittal — computer science at Cornell University. privatepanda.co">
+	<link rel="stylesheet" href="/style.css">
+</head>
+<body class="sub"><div class="page">
+<header class="masthead"><a class="logo" href="/"><img src="/images/pandalogo.svg" alt="The Private Panda"></a><a class="wordmark" href="/">privatepanda.co</a><nav><a href="/projects/" aria-current="page">projects</a><a href="/research/">research</a><a href="/experience/">experience</a><a href="/tools/">tools</a><a href="/about/">about</a><a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a></nav></header>
+<div class="hero"><p class="eyebrow">projects &middot; flagship</p><h1>MSPoker <span class="badge now">in active build</span></h1><span class="meta">solo &middot; design + implementation &middot; Rust engine &middot; Python training &amp; search</span><p class="lede">One brain, several seats: a poker AI for the open multiplayer, multi-seat version of No-Limit Hold&rsquo;em.</p></div>
+
+<section class="story" id="problem"><h2>The problem</h2>
+<p>Two-player No-Limit Hold&rsquo;em is effectively solved: counterfactual regret minimization (CFR) produces strategies that cannot be meaningfully exploited. Add more players and those guarantees disappear. MSPoker studies a sharper version of the multiplayer game: a single agent controls <em>k</em> of the <em>n</em> seats at a table.</p>
+<p>The core idea is to play the controlled seats as one joint player rather than <em>k</em> independent bots. All <em>k</em> seats share one information set, one reward, and one policy. The set of joint strategies strictly contains the product of the per-seat strategy sets, so the best joint strategy weakly dominates independent play. The pooled hole cards also give the coalition extra information about every opponent&rsquo;s range. That is why MSPoker is multi-seat instead of several copies of a heads-up bot.</p>
+<p>This is a research system. It is built and evaluated in simulation, and this page describes the architecture and the design decisions behind it.</p></section>
+
+<section class="story" id="architecture"><h2>Architecture</h2>
+<svg class="schematic solo wide" viewBox="0 0 640 210" role="img" aria-label="Three controlled seats share one coalition brain: a seat-attention network and CFR blueprint feed real-time search, which returns one joint action per seat">
+<rect class="bx" x="16" y="20" width="96" height="30"/><text x="64" y="39" text-anchor="middle">seat 1</text>
+<rect class="bx" x="16" y="90" width="96" height="30"/><text x="64" y="109" text-anchor="middle">seat 3</text>
+<rect class="bx" x="16" y="160" width="96" height="30"/><text x="64" y="179" text-anchor="middle">seat 5</text>
+<path class="ln" d="M112,35 L196,95 M112,105 L196,105 M112,175 L196,115"/>
+<text x="154" y="62" text-anchor="middle">shared</text><text x="154" y="148" text-anchor="middle">hole cards</text>
+<rect x="196" y="78" width="130" height="54" style="fill:rgba(163,177,138,.08);stroke:var(--moss);stroke-width:1.4"/>
+<text class="hlt" x="261" y="101" text-anchor="middle">coalition brain</text><text x="261" y="118" text-anchor="middle">1.4M-param seat-attn</text>
+<path class="ln" d="M326,105 L376,105"/>
+<rect class="bx" x="376" y="40" width="120" height="30"/><text x="436" y="59" text-anchor="middle">CFR blueprint</text>
+<rect class="bx" x="376" y="90" width="120" height="30"/><text x="436" y="109" text-anchor="middle">PPO fine-tune</text>
+<rect class="bx" x="376" y="140" width="120" height="30"/><text x="436" y="159" text-anchor="middle">CFR+ live search</text>
+<path class="ln" d="M436,70 L436,90 M436,120 L436,140"/>
+<path class="hl" d="M496,155 L540,155 L540,105 L590,105 M584,101 L590,105 L584,109"/>
+<text class="hlt" x="565" y="96" text-anchor="middle">joint</text><text class="hlt" x="565" y="125" text-anchor="middle">action</text>
+</svg>
+<div class="story-grid">
+<article><h3>Rust game engine</h3><p>The engine is written in Rust and exposed to Python through PyO3/maturin. Money is an <code>i64</code> in milli-big-blinds, so no floating-point chips exist anywhere, and every hand is checked against chip-conservation invariants. Hands are deterministic and replayable. The hand evaluator is a sort-and-categorize design packed into a <code>u32</code> rank instead of a 130&nbsp;MB lookup table: no static data, fully auditable, and still within the microsecond budget, with optimization kept behind a stable <code>evaluate_5</code>/<code>evaluate_7</code> API.</p></article>
+<article><h3>Seat-attention network</h3><p>A network of about 1.4M parameters attends across seats, so the controlled seats are represented together rather than as separate inputs. It is the policy and value core the blueprint and the search both rely on.</p></article>
+<article><h3>Blueprint, then exploitation</h3><p>Training starts with a DREAM/CFR-family blueprint, which gives a provable floor on exploitability. PPO then fine-tunes against weaker opponents with a KL anchor back to the blueprint. One method alone gives either safety or exploitation; the combination gives both.</p></article>
+<article><h3>Joint real-time search</h3><p>At decision time, CFR+ search refines the blueprint. A coalition range gadget computes the team&rsquo;s counterfactual values <em>jointly</em>. Summing per-seat values would be wrong, because card-removal and blocker effects cross between the coalition&rsquo;s known cards; the spec treats a per-seat sum as a build-breaking defect.</p></article>
+<article><h3>Opponent modelling</h3><p>Beta-binomial statistics track each opponent&rsquo;s tendencies, so exploitation adapts to the players actually at the table instead of a fixed population.</p></article>
+<article><h3>Built like flight software</h3><p>The system is built spec-first against about 155 ordered, verifiable tasks. Each task has a contract, the engineer and auditor roles are kept strictly separate, and phases close only on a human-signed git tag. A correctness-critical AI system is built auditably rather than in one pass.</p></article>
+</div></section>
+
+<section class="story" id="status"><h2>Where it is now</h2>
+<p>The design is complete (fourth generation, after three earlier iterations). The configuration layer, the Rust engine, the data models, and the neural network are implemented. Multi-seat coordination, training at scale, and live search are the next phases.</p>
+<p class="tech">Rust &middot; PyO3 / maturin &middot; Python &middot; neural networks (attention) &middot; CFR / CFR+ / MCCFR &middot; DREAM &middot; PPO &middot; Bayesian opponent modelling</p><p class="xref">back to <a href="/projects/#mspoker">projects &rarr;</a></p></section>
+<footer class="foot"><span>&copy; Parth Mittal &middot; privatepanda.co</span><span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:meparthmittal@gmail.com">Email</a></span></footer>
+</div></body></html>

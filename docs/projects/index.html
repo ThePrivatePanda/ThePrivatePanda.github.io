@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Projects — Parth Mittal</title>
-	<meta name="description" content="Featured systems by Parth Mittal: Meddler, a deterministic world simulator; Vantage, an outcome-space sports-arbitrage analyzer; and pyloggor, a Python logging library.">
+	<meta name="description" content="Featured systems by Parth Mittal: MSPoker, a multi-seat coalition poker AI with a Rust engine and CFR+ search; Vantage, an outcome-space arbitrage analyzer; pyloggor; and Meddler.">
 	<link rel="canonical" href="https://privatepanda.co/projects/">
 	<link rel="icon" href="/favicon.ico" sizes="48x48">
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Parth Mittal">
 	<meta property="og:title" content="Projects — Parth Mittal">
-	<meta property="og:description" content="Featured systems by Parth Mittal: Meddler, a deterministic world simulator; Vantage, an outcome-space sports-arbitrage analyzer; and pyloggor, a Python logging library.">
+	<meta property="og:description" content="Featured systems by Parth Mittal: MSPoker, a multi-seat coalition poker AI with a Rust engine and CFR+ search; Vantage, an outcome-space arbitrage analyzer; pyloggor; and Meddler.">
 	<meta property="og:url" content="https://privatepanda.co/projects/">
 	<meta property="og:image" content="https://privatepanda.co/images/og.png">
 	<meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
 	<meta property="og:locale" content="en_US">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="Projects — Parth Mittal">
-	<meta name="twitter:description" content="Featured systems by Parth Mittal: Meddler, a deterministic world simulator; Vantage, an outcome-space sports-arbitrage analyzer; and pyloggor, a Python logging library.">
+	<meta name="twitter:description" content="Featured systems by Parth Mittal: MSPoker, a multi-seat coalition poker AI with a Rust engine and CFR+ search; Vantage, an outcome-space arbitrage analyzer; pyloggor; and Meddler.">
 	<meta name="twitter:image" content="https://privatepanda.co/images/og.png">
 	<meta name="twitter:image:alt" content="Parth Mittal — computer science at Cornell University. privatepanda.co">
 	<link rel="stylesheet" href="/style.css">
@@ -52,39 +52,43 @@
 		</div>
 
 		<section id="featured">
-			<h2>Featured <span class="n">03</span></h2>
+			<h2>Featured <span class="n">04</span></h2>
 			<div class="grid">
 
-				<article class="fcard wide disclosure-card" id="meddler">
-					<details class="expandable">
+				<article class="fcard wide disclosure-card" id="mspoker">
+					<details class="expandable" open>
 						<summary>
-							<h3 class="item-title">Meddler <span class="badge now">in development</span></h3>
-							<span class="meta">solo &middot; design + build &middot; active</span>
-							<span class="preview">A deterministic simulator of a fictional world — countries with economies,
-							currencies, trade, leaders, wars, and disasters on a daily tick loop. History pauses,
-							scrubs, and rewinds; any headline traces back through its chain of causes; and
-							intervening forks the timeline, showing the future that was going to happen beside
-							the one just caused. Forks replay the parent&rsquo;s exact RNG state, so every
-							divergence is attributable to the intervention alone. Built as a pure event-sourced
-							engine behind a thin WebSocket protocol and a stateless view.</span>
+							<h3 class="item-title">MSPoker <span class="badge now">in active build</span></h3>
+							<span class="meta">flagship &middot; solo &middot; design + implementation &middot; Rust + Python</span>
+							<span class="preview">A poker AI for the open multiplayer problem: one agent controls several seats at a
+							table and plays them as a single joint player, which weakly dominates the same seats playing
+							independently. A Rust engine with chip-conservation invariants, a 1.4M-parameter
+							seat-attention network trained as a DREAM/CFR blueprint and fine-tuned with KL-anchored PPO,
+							and real-time CFR+ search with a coalition range gadget that computes team values jointly.
+							Built spec-first against about 155 verifiable tasks.</span>
 						</summary>
 						<div class="expand-body">
-							<svg class="schematic" viewBox="0 0 640 120" role="img" aria-label="Timeline forking at an intervention into an expected and a caused future">
-								<path class="ln" d="M20,74 L300,74"/>
-								<path class="ln" d="M60,70 L60,78 M100,70 L100,78 M140,70 L140,78 M180,70 L180,78 M220,70 L220,78 M260,70 L260,78"/>
-								<path class="lnd" d="M300,30 L300,66"/>
-								<text x="300" y="22" text-anchor="middle">intervention</text>
-								<circle class="nd" cx="300" cy="74" r="3.5"/>
-								<path class="lnd" d="M300,74 L620,74"/>
-								<text x="560" y="90" text-anchor="middle">expected</text>
-								<path class="hl" d="M300,74 L340,46 L620,46"/>
-								<text class="hlt" x="560" y="38" text-anchor="middle">caused</text>
-							</svg>
+							<svg class="schematic" viewBox="0 0 640 210" role="img" aria-label="Three controlled seats share one coalition brain: a seat-attention network and CFR blueprint feed real-time search, which returns one joint action per seat">
+<rect class="bx" x="16" y="20" width="96" height="30"/><text x="64" y="39" text-anchor="middle">seat 1</text>
+<rect class="bx" x="16" y="90" width="96" height="30"/><text x="64" y="109" text-anchor="middle">seat 3</text>
+<rect class="bx" x="16" y="160" width="96" height="30"/><text x="64" y="179" text-anchor="middle">seat 5</text>
+<path class="ln" d="M112,35 L196,95 M112,105 L196,105 M112,175 L196,115"/>
+<text x="154" y="62" text-anchor="middle">shared</text><text x="154" y="148" text-anchor="middle">hole cards</text>
+<rect x="196" y="78" width="130" height="54" style="fill:rgba(163,177,138,.08);stroke:var(--moss);stroke-width:1.4"/>
+<text class="hlt" x="261" y="101" text-anchor="middle">coalition brain</text><text x="261" y="118" text-anchor="middle">1.4M-param seat-attn</text>
+<path class="ln" d="M326,105 L376,105"/>
+<rect class="bx" x="376" y="40" width="120" height="30"/><text x="436" y="59" text-anchor="middle">CFR blueprint</text>
+<rect class="bx" x="376" y="90" width="120" height="30"/><text x="436" y="109" text-anchor="middle">PPO fine-tune</text>
+<rect class="bx" x="376" y="140" width="120" height="30"/><text x="436" y="159" text-anchor="middle">CFR+ live search</text>
+<path class="ln" d="M436,70 L436,90 M436,120 L436,140"/>
+<path class="hl" d="M496,155 L540,155 L540,105 L590,105 M584,101 L590,105 L584,109"/>
+<text class="hlt" x="565" y="96" text-anchor="middle">joint</text><text class="hlt" x="565" y="125" text-anchor="middle">action</text>
+</svg>
 						</div>
 					</details>
 					<div class="card-always">
-						<p class="tech">Python &middot; event-sourced engine &middot; WebSocket bridge &middot; HTML/JS &middot; Hypothesis property tests</p>
-						<p class="links"><a class="go" href="/projects/meddler/">full write-up &rarr;</a></p>
+						<p class="tech">Rust &middot; PyO3 &middot; Python &middot; attention networks &middot; CFR+ / DREAM &middot; PPO</p>
+						<p class="links"><a class="go" href="/projects/mspoker/">full write-up &rarr;</a></p>
 					</div>
 				</article>
 
@@ -156,19 +160,40 @@
 					</div>
 				</article>
 
-			</div>
-		</section>
-
-		<section id="research-projects">
-			<h2>Research projects <span class="n">01</span></h2>
-			<div class="grid pairs">
-				<article class="fcard" id="hivepoker">
-					<h3>HivePoker</h3>
-					<span class="meta">research project &middot; multiplayer poker AI</span>
-					<p>Active multiplayer poker-AI work studying coordinated seats in an imperfect-information game. Public release planned.</p>
+				<article class="fcard disclosure-card" id="meddler">
+					<details class="expandable">
+						<summary>
+							<h3 class="item-title">Meddler <span class="badge now">in development</span></h3>
+							<span class="meta">solo &middot; design + build &middot; active</span>
+							<span class="preview">A deterministic simulator of a fictional world — countries with economies,
+							currencies, trade, leaders, wars, and disasters on a daily tick loop. History pauses,
+							scrubs, and rewinds; any headline traces back through its chain of causes; and
+							intervening forks the timeline, showing the future that was going to happen beside
+							the one just caused. Forks replay the parent&rsquo;s exact RNG state, so every
+							divergence is attributable to the intervention alone. Built as a pure event-sourced
+							engine behind a thin WebSocket protocol and a stateless view.</span>
+						</summary>
+						<div class="expand-body">
+							<svg class="schematic" viewBox="0 0 640 120" role="img" aria-label="Timeline forking at an intervention into an expected and a caused future">
+								<path class="ln" d="M20,74 L300,74"/>
+								<path class="ln" d="M60,70 L60,78 M100,70 L100,78 M140,70 L140,78 M180,70 L180,78 M220,70 L220,78 M260,70 L260,78"/>
+								<path class="lnd" d="M300,30 L300,66"/>
+								<text x="300" y="22" text-anchor="middle">intervention</text>
+								<circle class="nd" cx="300" cy="74" r="3.5"/>
+								<path class="lnd" d="M300,74 L620,74"/>
+								<text x="560" y="90" text-anchor="middle">expected</text>
+								<path class="hl" d="M300,74 L340,46 L620,46"/>
+								<text class="hlt" x="560" y="38" text-anchor="middle">caused</text>
+							</svg>
+						</div>
+					</details>
+					<div class="card-always">
+						<p class="tech">Python &middot; event-sourced engine &middot; WebSocket bridge &middot; HTML/JS &middot; Hypothesis property tests</p>
+						<p class="links"><a class="go" href="/projects/meddler/">full write-up &rarr;</a></p>
+					</div>
 				</article>
+
 			</div>
-			<p class="xref">internships and leadership live under <a href="/experience/">experience</a> &middot; lab work under <a href="/research/">research</a></p>
 		</section>
 
 		<footer class="foot">

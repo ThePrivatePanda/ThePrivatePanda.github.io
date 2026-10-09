@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ChipSat Flight Software — Parth Mittal</title>
-	<meta name="description" content="Parth Mittal is a flight software engineer on a chipsat in Cornell's Space Systems Design Studio, porting its firmware from Arduino to STM32 ahead of rocket-launch tests.">
+	<meta name="description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its space usage from 80% to 20%, and rewrote its ground software.">
 	<link rel="canonical" href="https://privatepanda.co/research/chipsat/">
 	<link rel="icon" href="/favicon.ico" sizes="48x48">
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Parth Mittal">
 	<meta property="og:title" content="ChipSat Flight Software — Parth Mittal">
-	<meta property="og:description" content="Parth Mittal is a flight software engineer on a chipsat in Cornell's Space Systems Design Studio, porting its firmware from Arduino to STM32 ahead of rocket-launch tests.">
+	<meta property="og:description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its space usage from 80% to 20%, and rewrote its ground software.">
 	<meta property="og:url" content="https://privatepanda.co/research/chipsat/">
 	<meta property="og:image" content="https://privatepanda.co/images/og.png">
 	<meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
 	<meta property="og:locale" content="en_US">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="ChipSat Flight Software — Parth Mittal">
-	<meta name="twitter:description" content="Parth Mittal is a flight software engineer on a chipsat in Cornell's Space Systems Design Studio, porting its firmware from Arduino to STM32 ahead of rocket-launch tests.">
+	<meta name="twitter:description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its space usage from 80% to 20%, and rewrote its ground software.">
 	<meta name="twitter:image" content="https://privatepanda.co/images/og.png">
 	<meta name="twitter:image:alt" content="Parth Mittal — computer science at Cornell University. privatepanda.co">
 	<link rel="stylesheet" href="/style.css">
@@ -46,38 +46,43 @@
 
 		<div class="hero">
 			<p class="eyebrow">research &middot; space systems design studio</p>
-			<h1>ChipSat Flight Software <span class="badge now">in progress</span></h1>
+			<h1>ChipSat Flight Software</h1>
 			<span class="meta">Flight Software Engineer &middot; Cornell SSDS &middot; Fall 2026</span>
-			<p class="lede">Flight software for a chipsat — a gram-scale, single-board spacecraft — as its board moves from Arduino to STM32 ahead of rocket-launch testing.</p>
+			<p class="lede">I rebuilt the entire flight software stack for a chipsat — a gram-scale, single-board spacecraft — and rewrote its ground software, cutting space usage from 80% to 20%.</p>
 		</div>
 
 		<section>
 			<h2>Overview</h2>
-			<svg class="schematic solo" viewBox="0 0 320 120" role="img" aria-label="Plan: reproduce the Arduino build as a reference, port it to STM32, then fly it on a rocket launch">
+			<svg class="schematic solo" viewBox="0 0 320 120" role="img" aria-label="The Arduino build was the reference, the flight stack was rebuilt on STM32, and flight tests on rocket launches are next">
 				<rect class="bx" x="16" y="44" width="78" height="30"/>
 				<text x="55" y="62" text-anchor="middle">arduino build</text>
-				<text x="55" y="90" text-anchor="middle">reference</text>
+				<text x="55" y="90" text-anchor="middle">80% used</text>
 				<path class="hl" d="M94,59 L126,59 M120,55 L126,59 L120,63"/>
 				<rect class="bx" x="126" y="44" width="78" height="30"/>
-				<text class="hlt" x="165" y="62" text-anchor="middle">stm32 port</text>
-				<text x="165" y="90" text-anchor="middle">swap-driven</text>
+				<text class="hlt" x="165" y="62" text-anchor="middle">rebuilt stack</text>
+				<text class="hlt" x="165" y="90" text-anchor="middle">20% used</text>
 				<path class="lnd" d="M204,59 L236,59"/>
 				<rect class="bx" x="236" y="44" width="68" height="30" style="stroke-dasharray:4 4"/>
 				<text x="270" y="62" text-anchor="middle">flight test</text>
 				<text x="270" y="90" text-anchor="middle">planned</text>
 			</svg>
-			<p>I started this semester as a flight software engineer on the chipsat in Cornell&rsquo;s Space Systems Design Studio. The board is migrating from Arduino to STM32. The first half of the semester reproduces the existing Arduino build so its behavior is pinned down and any latent bugs surface against a known-good reference; the second half ports the stack onto STM32. Two rocket launches are planned this semester so the software is exercised in real flight rather than only on the bench.</p>
-			<p>The work has just begun; this page describes the plan, not results.</p>
+			<p>I joined the chipsat team in Cornell&rsquo;s Space Systems Design Studio as a flight software engineer while the board was moving from Arduino to STM32. Rather than patch the existing code, I rebuilt the entire flight software stack.</p>
+			<ul class="dlist">
+				<li><strong>80% &rarr; 20% space usage.</strong> The rebuilt stack uses a quarter of what the old one did, freeing most of the budget on a size-, weight-, and power-constrained target. It is also more efficient and more reliable.</li>
+				<li><strong>Library bugs found and fixed.</strong> Several third-party libraries the stack depended on had bugs. I tracked them down and replaced those libraries with my own implementations built for flight.</li>
+				<li><strong>Ground software rewritten.</strong> I also rewrote the ground software that commands the spacecraft and receives its telemetry.</li>
+			</ul>
+			<p>Two rocket launches are planned this semester, so the software is exercised in real flight rather than only on the bench.</p>
 		</section>
 
 		<section>
 			<h2>Design decisions <span class="n">03</span></h2>
 			<ul class="dlist">
-				<li>Reproduce the existing Arduino build before porting anything, rather than rewriting straight onto STM32 — without a known-good reference there is no way to tell a port bug from a bug the firmware always had.</li>
+				<li>Use the existing Arduino build as the behavioral reference before rebuilding — without a known-good reference there is no way to tell a new bug from a bug the firmware always had.</li>
 				<li>Move to STM32 because the chipsat&rsquo;s size, weight, and power envelope rules the Arduino hardware out; the platform choice follows the SWaP budget, not developer convenience, and the MCU in turn bounds what the flight software can afford to do.</li>
 				<li>Plan flight testing on two rocket launches instead of bench testing alone, so the software meets the vibration, power, and timing conditions it actually has to survive.</li>
 			</ul>
-			<p class="tech">C/C++ &middot; STM32 (ARM Cortex-M) &middot; Arduino &middot; embedded firmware</p>
+			<p class="tech">C/C++ &middot; STM32 (ARM Cortex-M) &middot; Arduino &middot; embedded firmware &middot; ground software</p>
 			<p class="xref">listed under <a href="/research/#chipsat">research &amp; publications &rarr;</a></p>
 		</section>
 
