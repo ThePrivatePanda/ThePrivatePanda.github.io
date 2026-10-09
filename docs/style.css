@@ -805,10 +805,9 @@ a:focus-visible {
 
 /* ---------- recruiter homepage (2026-10) ---------- */
 
-.rhome .page { max-width: 68rem; }
 .rhero { padding: 3.2rem 0 1.6rem; }
 .rhero h1 { font-size: clamp(2.8rem, 6vw, 4.4rem); line-height: 1; margin: 0.6rem 0 1rem; }
-.rhero .lede { font-size: clamp(1.05rem, 1.6vw, 1.22rem); max-width: 46rem; color: var(--ink); }
+.rhero .lede { font-size: clamp(1.05rem, 1.6vw, 1.22rem); max-width: 60rem; color: var(--ink); }
 .rhero .lede strong { color: var(--ink); font-weight: 600; }
 .rseek { display: flex; align-items: flex-start; gap: 0.6rem; font-family: var(--mono); font-size: 0.8rem; color: var(--amber); margin: 1.2rem 0 1.4rem; }
 .rseek .dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--amber); flex: none; margin-top: 0.42em; }
@@ -862,7 +861,7 @@ a:focus-visible {
 }
 .rfeature.home-feature { grid-template-columns: 1fr; }
 .rfeature .home-feature-visual { border-right: 0; border-bottom: 1px solid var(--hairline); padding: 1.5rem clamp(1rem, 4vw, 3rem); }
-.rfeature .home-feature-visual .schematic { max-width: 54rem; margin: 0 auto; }
+.rfeature .home-feature-visual .schematic { max-width: 64rem; margin: 0 auto; }
 .rfeature .home-feature-copy { padding: clamp(1.4rem, 3vw, 2.4rem); }
 .rfeature .rlist { grid-template-columns: repeat(2, 1fr); gap: 0.5rem 2rem; }
 @media (max-width: 52rem) { .rfeature .rlist { grid-template-columns: 1fr; } }
