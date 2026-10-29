@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Trainings — Cornell Maker Club</title>
+	<meta name="description" content="Sign up for a Cornell Maker Club training: general, 3D printer or laser cutter.">
+	<link rel="canonical" href="https://privatepanda.co/trainings/">
+	<link rel="icon" href="/favicon.ico" sizes="48x48">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<meta name="theme-color" content="#0b0d0b">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Trainings — Cornell Maker Club">
+	<meta property="og:description" content="Sign up for a Cornell Maker Club training: general, 3D printer or laser cutter.">
+	<meta property="og:url" content="https://privatepanda.co/trainings/">
+	<link rel="stylesheet" href="/style.css">
+	<style>
+		/* The sign-up block (trainings.js) in this site's palette. ".page" so
+		   this outranks the defaults the block injects after this sheet. */
+		.page #cmc-trainings {
+			--cmct-muted: var(--mut);
+			--cmct-line: var(--line);
+			--cmct-card: var(--surface);
+			--cmct-full: rgba(233, 231, 223, 0.04);
+			--cmct-accent: var(--moss);
+			--cmct-accent-ink: var(--bg);
+			--cmct-ok: var(--moss);
+			--cmct-ok-bg: rgba(163, 177, 138, 0.1);
+			--cmct-bad: var(--amber);
+			--cmct-bad-bg: rgba(208, 165, 104, 0.1);
+			--cmct-mono: var(--mono);
+			max-width: 44rem;
+		}
+		.howto { color: var(--mut); max-width: 44em; margin-top: 0.9rem; }
+	</style>
+</head>
+<body class="sub">
+	<div class="page withnav">
+		<header class="masthead">
+			<a class="logo" href="/"><img src="/images/pandalogo.svg" alt="The Private Panda"></a>
+			<a class="wordmark" href="/">privatepanda.co</a>
+			<nav>
+				<a href="/projects/">projects</a>
+				<a href="/research/">research</a>
+				<a href="/experience/">experience</a>
+				<a href="/tools/">tools</a>
+				<a href="/about/">about</a>
+				<a href="https://data.privatepanda.co/resume">r&eacute;sum&eacute; &nearr;</a>
+			</nav>
+		</header>
+		<div class="hero">
+			<p class="eyebrow">cornell maker club</p>
+			<h1>Trainings</h1>
+			<p class="lede">Pick a session with open spots and enter your name, NetID and CUID (the 7-digit number on your Cornell ID card).</p>
+			<p class="howto">Each session has a limited number of spots. If you can no longer make it, tell the trainer so someone else can take your place.</p>
+		</div>
+		<section>
+			<!-- Sessions and spot counts come from the club's Google Sheet; see trainings/README.md in the CMC repo. -->
+			<div id="cmc-trainings" data-endpoint="https://script.google.com/macros/s/AKfycbxKrVEuhRtcNd4V-elr8M_NlfPNbJaw8LWcW3qb3EXFRuxmJlWPlLtfoiLPdv3kqoUlpQ/exec"></div>
+		</section>
+		<footer class="foot"><span>&copy; Parth Mittal &middot; privatepanda.co</span><span><a href="https://github.com/ThePrivatePanda">GitHub</a> &middot; <a href="https://www.linkedin.com/in/parth-mittal-o6">LinkedIn</a> &middot; <a href="mailto:meparthmittal@gmail.com">Email</a></span></footer>
+	</div>
+	<script src="trainings.js" defer></script>
+</body>
+</html>
