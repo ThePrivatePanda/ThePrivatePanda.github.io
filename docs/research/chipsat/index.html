@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ChipSat Flight Software — Parth Mittal</title>
-	<meta name="description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its space usage from 80% to 20%, and rewrote its ground software.">
+	<meta name="description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its flight image from 109 kB to 67 kB, and rewrote its ground software.">
 	<link rel="canonical" href="https://privatepanda.co/research/chipsat/">
 	<link rel="icon" href="/favicon.ico" sizes="48x48">
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Parth Mittal">
 	<meta property="og:title" content="ChipSat Flight Software — Parth Mittal">
-	<meta property="og:description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its space usage from 80% to 20%, and rewrote its ground software.">
+	<meta property="og:description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its flight image from 109 kB to 67 kB, and rewrote its ground software.">
 	<meta property="og:url" content="https://privatepanda.co/research/chipsat/">
 	<meta property="og:image" content="https://privatepanda.co/images/og.png">
 	<meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
 	<meta property="og:locale" content="en_US">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="ChipSat Flight Software — Parth Mittal">
-	<meta name="twitter:description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its space usage from 80% to 20%, and rewrote its ground software.">
+	<meta name="twitter:description" content="Parth Mittal rebuilt the entire flight software stack for a chipsat in Cornell's Space Systems Design Studio, cut its flight image from 109 kB to 67 kB, and rewrote its ground software.">
 	<meta name="twitter:image" content="https://privatepanda.co/images/og.png">
 	<meta name="twitter:image:alt" content="Parth Mittal — computer science at Cornell University. privatepanda.co">
 	<link rel="stylesheet" href="/style.css">
@@ -48,7 +48,7 @@
 			<p class="eyebrow">research &middot; space systems design studio</p>
 			<h1>ChipSat Flight Software</h1>
 			<span class="meta">Flight Software Engineer &middot; Cornell SSDS &middot; Fall 2026</span>
-			<p class="lede">I rebuilt the entire flight software stack for a chipsat — a gram-scale, single-board spacecraft — and rewrote its ground software, cutting space usage from 80% to 20%.</p>
+			<p class="lede">I rebuilt the entire flight software stack for a chipsat — a gram-scale, single-board spacecraft — and rewrote its ground software, cutting the flight image from 109 kB to 67 kB while adding features.</p>
 		</div>
 
 		<section>
@@ -56,11 +56,11 @@
 			<svg class="schematic solo" viewBox="0 0 320 120" role="img" aria-label="The Arduino build was the reference, the flight stack was rebuilt on STM32, and flight tests on rocket launches are next">
 				<rect class="bx" x="16" y="44" width="78" height="30"/>
 				<text x="55" y="62" text-anchor="middle">arduino build</text>
-				<text x="55" y="90" text-anchor="middle">80% used</text>
+				<text x="55" y="90" text-anchor="middle">109 kB</text>
 				<path class="hl" d="M94,59 L126,59 M120,55 L126,59 L120,63"/>
 				<rect class="bx" x="126" y="44" width="78" height="30"/>
 				<text class="hlt" x="165" y="62" text-anchor="middle">rebuilt stack</text>
-				<text class="hlt" x="165" y="90" text-anchor="middle">20% used</text>
+				<text class="hlt" x="165" y="90" text-anchor="middle">67 kB</text>
 				<path class="lnd" d="M204,59 L236,59"/>
 				<rect class="bx" x="236" y="44" width="68" height="30" style="stroke-dasharray:4 4"/>
 				<text x="270" y="62" text-anchor="middle">flight test</text>
@@ -68,7 +68,7 @@
 			</svg>
 			<p>I joined the chipsat team in Cornell&rsquo;s Space Systems Design Studio as a flight software engineer while the board was moving from Arduino to STM32. Rather than patch the existing code, I rebuilt the entire flight software stack.</p>
 			<ul class="dlist">
-				<li><strong>80% &rarr; 20% space usage.</strong> The rebuilt stack uses a quarter of what the old one did, freeing most of the budget on a size-, weight-, and power-constrained target. It is also more efficient and more reliable.</li>
+				<li><strong>109&nbsp;kB &rarr; 67&nbsp;kB flight image.</strong> About 41% to 26% of the 256&nbsp;KB part, and the smaller image does more: the rebuilt stack added per-sensor watchdogs, a flash log and an in-image settings block. Measured with arduino-cli&rsquo;s size output for the old build and the .bin size for the new one.</li>
 				<li><strong>Library bugs found and fixed.</strong> Several third-party libraries the stack depended on had bugs. I tracked them down and replaced those libraries with my own implementations built for flight.</li>
 				<li><strong>Ground software rewritten.</strong> I also rewrote the ground software that commands the spacecraft and receives its telemetry.</li>
 			</ul>

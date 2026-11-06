@@ -97,15 +97,97 @@
 		<main class="rflow">
 		<section id="at-a-glance" aria-label="At a glance">
 			<ul class="stats">
-				<li><span class="big">80&rarr;20%</span><span class="lbl">space usage after rebuilding a chipsat&rsquo;s entire flight stack</span></li>
+				<li><span class="big">109&rarr;67 kB</span><span class="lbl">flight image after rebuilding a chipsat&rsquo;s entire flight stack, while adding watchdogs, a flash log and a settings block</span></li>
 				<li><span class="big">2</span><span class="lbl">papers: AIAA JAIS (second author, under review) and SPIE 2026 (published)</span></li>
 				<li><span class="big">4</span><span class="lbl">engineering roles: Cornell SSDS, Spin Drift, MIT Lincoln Lab, Phi Dynamics</span></li>
 				<li><span class="big">50k+</span><span class="lbl">PyPI downloads of my open-source libraries</span></li>
 			</ul>
 		</section>
 
+		<section id="papers">
+			<h2>Publications</h2>
+			<a class="pub itemlink" href="/research/#offloading">
+				<span class="title">Multi-Objective Optimization of Computation Offloading in Space Systems <span class="badge now">under review</span></span>
+				<span class="meta">AIAA Journal of Aerospace Information Systems &middot; 2026 &middot; second author of 4 &middot; wrote the computational core</span>
+				<span class="nav-arrow" aria-hidden="true">&rarr;</span>
+			</a>
+			<p class="xref">code for the offloading paper: <a href="https://github.com/ThePrivatePanda/compute-location-moo">github.com/ThePrivatePanda/compute-location-moo&nbsp;&nearr;</a></p>
+			<a class="pub itemlink" href="https://arxiv.org/abs/2608.17152">
+				<span class="title">The Roman Coronagraph Community Participation Program: Target Database and Tools <span class="badge live">published</span></span>
+				<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; arXiv:2608.17152 &middot; built the Python query client</span>
+				<span class="nav-arrow" aria-hidden="true">&nearr;</span>
+			</a>
+		</section>
 		<section id="featured">
-			<h2>Featured project</h2>
+			<h2>Featured work</h2>
+			<article class="fcard wide home-feature rfeature">
+				<div class="home-feature-visual">
+				<svg class="schematic" viewBox="0 0 320 120" role="img" aria-label="The Arduino build was the reference at 109 kB, the flight stack was rebuilt on STM32 at 67 kB, and flight tests on rocket launches are next">
+					<rect class="bx" x="16" y="44" width="78" height="30"/>
+					<text x="55" y="62" text-anchor="middle">arduino build</text>
+					<text x="55" y="90" text-anchor="middle">109 kB</text>
+					<path class="hl" d="M94,59 L126,59 M120,55 L126,59 L120,63"/>
+					<rect class="bx" x="126" y="44" width="78" height="30"/>
+					<text class="hlt" x="165" y="62" text-anchor="middle">rebuilt stack</text>
+					<text class="hlt" x="165" y="90" text-anchor="middle">67 kB</text>
+					<path class="lnd" d="M204,59 L236,59"/>
+					<rect class="bx" x="236" y="44" width="68" height="30" style="stroke-dasharray:4 4"/>
+					<text x="270" y="62" text-anchor="middle">flight test</text>
+					<text x="270" y="90" text-anchor="middle">planned</text>
+				</svg>
+				</div>
+				<div class="home-feature-copy">
+				<h3><a href="/research/chipsat/">ChipSat Flight Software</a> <span class="badge now">two launches this semester</span></h3>
+				<span class="meta">Cornell Space Systems Design Studio &middot; flight + ground software &middot; C++ on STM32, Rust on the ground</span>
+				<p>A chipsat is a gram-scale, single-board spacecraft. Hundreds are released near 100&nbsp;km and
+				transmit telemetry over LoRa the whole way down. I rebuilt the flight software from an Arduino
+				sketch into a CMake project on STM32, and rewrote the ground software that configures and flashes
+				the boards.</p>
+				<ul class="rlist">
+					<li>Three layers, with one interface per peripheral and two implementations behind each, so drivers could be ported one at a time against a build that still flew.</li>
+					<li>Six device drivers written against datasheets, replacing vendor libraries whose bugs I traced by reading their source: one reported failed I2C writes as successes and retried forever.</li>
+					<li>Flight logic tested on a laptop against mocks for every vendor library, because there is no spacecraft on my desk.</li>
+					<li>One encoder feeds both the radio and the flash log, so the live downlink and the on-board record cannot disagree.</li>
+				</ul>
+				<p class="links"><a class="go" href="/research/chipsat/">architecture &amp; design decisions &rarr;</a></p>
+				</div>
+			</article>
+		</section>
+
+		<section id="experience">
+			<h2>Experience</h2>
+			<div class="roles">
+				<a class="role itemlink" href="/research/chipsat/">
+					<span class="when">Fall 2026</span>
+					<span class="what"><span class="title">Flight Software Engineer</span><span class="org">Cornell Space Systems Design Studio</span></span>
+					<span class="impact">Rebuilt the chipsat&rsquo;s entire C/C++ flight stack and rewrote its ground software. Cut the flight image from 109&nbsp;kB to 67&nbsp;kB while adding features, and replaced buggy third-party libraries with in-house implementations.</span>
+					<span class="nav-arrow" aria-hidden="true">&rarr;</span>
+				</a>
+				<a class="role itemlink" href="/experience/spin-drift/">
+					<span class="when">Nov 2025 &ndash; May 2026</span>
+					<span class="what"><span class="title">Research Intern</span><span class="org">Spin Drift Technologies</span></span>
+					<span class="impact">Built a from-scratch C++23 visual-inertial odometry stack for GPS-denied drone flight. Evaluated 5 off-the-shelf VIO/SLAM systems and replaced them with a CPU-only pipeline that streams 6-DoF pose to PX4 at 30&nbsp;Hz.</span>
+					<span class="nav-arrow" aria-hidden="true">&rarr;</span>
+				</a>
+				<a class="role itemlink" href="/experience/spine/">
+					<span class="when">Sep 2024 &ndash; Apr 2025</span>
+					<span class="what"><span class="title">Networks Lead</span><span class="org">MIT Lincoln Laboratory &middot; SOCOM Ignite</span></span>
+					<span class="impact">Led networks on a 5-person team building a covert short-range radio protocol for the US Navy across 2 hardware generations, running one stack on 3 MCU platforms.</span>
+					<span class="nav-arrow" aria-hidden="true">&rarr;</span>
+				</a>
+				<a class="role itemlink" href="/experience/statelens/">
+					<span class="when">Summer 2025</span>
+					<span class="what"><span class="title">Research Intern</span><span class="org">Phi Dynamics</span></span>
+					<span class="impact">Wrote an LLVM pass and a C++ constraint-graph path solver for a path-exhaustive fuzzer, and pinned the toolchain in a custom Guix channel for bit-identical builds team-wide.</span>
+					<span class="nav-arrow" aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
+			<p class="xref">more roles, teams, and lab work under <a href="/experience/">experience&nbsp;&rarr;</a></p>
+		</section>
+
+
+		<section id="build">
+			<h2>Also building</h2>
 			<article class="fcard wide home-feature rfeature">
 				<div class="home-feature-visual">
 				<svg class="schematic" viewBox="0 0 640 210" role="img" aria-label="Three controlled seats share one coalition brain: a seat-attention network and CFR blueprint feed real-time search, which returns one joint action per seat">
@@ -143,52 +225,6 @@
 				</div>
 			</article>
 		</section>
-
-		<section id="experience">
-			<h2>Experience</h2>
-			<div class="roles">
-				<a class="role itemlink" href="/research/chipsat/">
-					<span class="when">Fall 2026</span>
-					<span class="what"><span class="title">Flight Software Engineer</span><span class="org">Cornell Space Systems Design Studio</span></span>
-					<span class="impact">Rebuilt the chipsat&rsquo;s entire C/C++ flight stack and rewrote its ground software. Cut space usage from 80% to 20% and replaced buggy third-party libraries with in-house implementations.</span>
-					<span class="nav-arrow" aria-hidden="true">&rarr;</span>
-				</a>
-				<a class="role itemlink" href="/experience/spin-drift/">
-					<span class="when">Nov 2025 &ndash; May 2026</span>
-					<span class="what"><span class="title">Research Intern</span><span class="org">Spin Drift Technologies</span></span>
-					<span class="impact">Built a from-scratch C++23 visual-inertial odometry stack for GPS-denied drone flight. Evaluated 5 off-the-shelf VIO/SLAM systems and replaced them with a CPU-only pipeline that streams 6-DoF pose to PX4 at 30&nbsp;Hz.</span>
-					<span class="nav-arrow" aria-hidden="true">&rarr;</span>
-				</a>
-				<a class="role itemlink" href="/experience/spine/">
-					<span class="when">Sep 2024 &ndash; Apr 2025</span>
-					<span class="what"><span class="title">Networks Lead</span><span class="org">MIT Lincoln Laboratory &middot; SOCOM Ignite</span></span>
-					<span class="impact">Led networks on a 5-person team building a covert short-range radio protocol for the US Navy across 2 hardware generations, running one stack on 3 MCU platforms.</span>
-					<span class="nav-arrow" aria-hidden="true">&rarr;</span>
-				</a>
-				<a class="role itemlink" href="/experience/statelens/">
-					<span class="when">Summer 2025</span>
-					<span class="what"><span class="title">Research Intern</span><span class="org">Phi Dynamics</span></span>
-					<span class="impact">Wrote an LLVM pass and a C++ constraint-graph path solver for a path-exhaustive fuzzer, and pinned the toolchain in a custom Guix channel for bit-identical builds team-wide.</span>
-					<span class="nav-arrow" aria-hidden="true">&rarr;</span>
-				</a>
-			</div>
-			<p class="xref">more roles, teams, and lab work under <a href="/experience/">experience&nbsp;&rarr;</a></p>
-		</section>
-
-		<section id="papers">
-			<h2>Publications</h2>
-			<a class="pub itemlink" href="/research/#offloading">
-				<span class="title">Multi-Objective Optimization of Computation Offloading in Space Systems <span class="badge now">under review</span></span>
-				<span class="meta">AIAA Journal of Aerospace Information Systems &middot; 2026 &middot; second author of 4 &middot; wrote the computational core</span>
-				<span class="nav-arrow" aria-hidden="true">&rarr;</span>
-			</a>
-			<a class="pub itemlink" href="https://arxiv.org/abs/2608.17152">
-				<span class="title">The Roman Coronagraph Community Participation Program: Target Database and Tools <span class="badge live">published</span></span>
-				<span class="meta">SPIE Astronomical Telescopes + Instrumentation 2026 &middot; arXiv:2608.17152 &middot; built the Python query client</span>
-				<span class="nav-arrow" aria-hidden="true">&nearr;</span>
-			</a>
-		</section>
-
 		<section id="skills">
 			<h2>Skills</h2>
 			<dl class="skills">
