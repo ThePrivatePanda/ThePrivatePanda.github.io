@@ -44,6 +44,7 @@
     ".cmct-form input[name=name]{flex:2 1 180px}",
     ".cmct-form input{flex:1 1 110px;min-width:0;font:15px var(--cmct-mono);padding:9px 11px;border:1px solid var(--cmct-line);border-radius:4px;background:transparent;color:inherit}",
     ".cmct-form button{font-family:inherit;font-weight:600;font-size:14px;border:0;border-radius:4px;padding:9px 16px;cursor:pointer;background:var(--cmct-accent);color:var(--cmct-accent-ink)}",
+    ".cmct-form button.cmct-w{background:transparent;color:var(--cmct-accent);box-shadow:inset 0 0 0 1px var(--cmct-accent)}",
     ".cmct-form button:disabled{opacity:.45;cursor:not-allowed}",
     ".cmct-form input:focus-visible,.cmct-form button:focus-visible{outline:2px solid var(--cmct-accent);outline-offset:2px}",
     ".cmct-msg{font-size:.9em;padding:8px 10px;border-radius:4px}",
@@ -79,6 +80,7 @@
     }).join("");
     Array.prototype.forEach.call(root.querySelectorAll("form[data-s]"), function (f) {
       f.addEventListener("submit", function (e) { e.preventDefault(); signUp(f.getAttribute("data-s"), f); });
+      f.querySelector(".cmct-w").addEventListener("click", function () { withdraw(f.getAttribute("data-s"), f); });
       Array.prototype.forEach.call(f.querySelectorAll("input"), function (i) {
         if (typed[i.id] && !i.disabled) i.value = typed[i.id];
       });
@@ -94,10 +96,11 @@
       (s.notes ? '<div class="cmct-notes">' + esc(s.notes) + "</div>" : "") + "</div>" +
       '<div class="cmct-spots">' + (full ? "Full" : esc(s.left) + " of " + esc(s.spots) + " open") + "</div></div>" +
       '<form class="cmct-form" data-s="' + esc(s.id) + '">' +
-      field(s, "name", "Your name", "Full name", "name", "", full || b) +
-      field(s, "netid", "Your NetID", "NetID", "off", ' autocapitalize="off" spellcheck="false"', full || b) +
-      field(s, "cuid", "Your CUID (7 digits on your Cornell ID)", "CUID", "off", ' inputmode="numeric" maxlength="7"', full || b) +
-      '<button type="submit"' + (full || b ? " disabled" : "") + ">" + (b ? "Signing up…" : full ? "Full" : "Sign up") + "</button></form>" +
+      field(s, "name", "Your name", "Full name", "name", "", b) +
+      field(s, "netid", "Your NetID", "NetID", "off", ' autocapitalize="off" spellcheck="false"', b) +
+      field(s, "cuid", "Your CUID (7 digits on your Cornell ID)", "CUID", "off", ' inputmode="numeric" maxlength="7"', b) +
+      '<button type="submit"' + (full || b ? " disabled" : "") + ">" + (b === "signup" ? "Signing up…" : full ? "Full" : "Sign up") + "</button>" +
+      '<button type="button" class="cmct-w"' + (b ? " disabled" : "") + ">" + (b === "withdraw" ? "Withdrawing…" : "Withdraw") + "</button></form>" +
       (m ? '<div class="cmct-msg ' + (m.ok ? "ok" : "bad") + '" role="status">' + esc(m.text) + "</div>" : "") +
       "</div>";
   }
@@ -128,11 +131,9 @@
       !NETID.test(entry.netid) ? (entry.netid ? '"' + entry.netid.slice(0, 20) + "\" doesn't look like a NetID. It's letters then numbers, like ab123." : "Enter your NetID.") :
       !CUID.test(entry.cuid) ? "Your CUID is the 7-digit number on your Cornell ID card." : "";
     if (problem) { messages[id] = { ok: false, text: problem }; draw(); return; }
-    busy[id] = true; delete messages[id];
+    busy[id] = "signup"; delete messages[id];
     failed = entry; draw();
-    fetch(endpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
-                      body: JSON.stringify({ session: id, name: entry.name, netid: entry.netid, cuid: entry.cuid }) })
-      .then(function (r) { return r.json(); })
+    post({ session: id, name: entry.name, netid: entry.netid, cuid: entry.cuid })
       .then(function (d) {
         messages[id] = d.ok ? { ok: true, text: d.message + " " + d.left + " spot" + (d.left === 1 ? "" : "s") + " left." }
                             : { ok: false, text: d.error || "That didn't work. Try again." };
@@ -148,6 +149,32 @@
       .then(function () { if (failed) restore(id, failed); failed = null; });
   }
   var failed = null;
+
+  // Withdrawing needs only the NetID and CUID signed up with; no login or
+  // emailed code, by the club's choice.
+  function withdraw(id, form) {
+    var v = function (k) { return String(form.querySelector("input[name=" + k + "]").value || "").trim(); };
+    var netid = v("netid").toLowerCase(), cuid = v("cuid").replace(/\s+/g, "");
+    if (!NETID.test(netid) || !CUID.test(cuid)) {
+      messages[id] = { ok: false, text: "To withdraw, enter the NetID and CUID you signed up with." };
+      draw(); return;
+    }
+    busy[id] = "withdraw"; delete messages[id]; draw();
+    post({ withdraw: true, session: id, netid: netid, cuid: cuid })
+      .then(function (d) {
+        messages[id] = d.ok ? { ok: true, text: d.message } : { ok: false, text: d.error || "That didn't work. Try again." };
+      })
+      .catch(function () {
+        messages[id] = { ok: false, text: "Couldn't reach the sign-up sheet. Check your connection and try again." };
+      })
+      .then(function () { busy[id] = false; return load(); });
+  }
+
+  function post(body) {
+    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+                             body: JSON.stringify(body) })
+      .then(function (r) { return r.json(); });
+  }
 
   // After a refusal, put back what they typed so they only fix the one field.
   function restore(id, entry) {
